@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"the-fleetinglove.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="论文笔记–Cross-modal Deep Face Normals with Deactivable Skip Connections摘要​        当下单目重建多采用数据驱动的策略，但是受限于真实标签数据的缺乏，导致这种方法很困难。本文提出一种跨模态网络架构，可以利用所有图像和法线数据（无论是否配对），通过encoder和decoder的跳跃连接实现面部细节在图像和法线维度上进行传递。本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FleetingSmile Blog">
+<meta property="og:url" content="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/index.html">
+<meta property="og:site_name" content="FleetingSmile Blog">
+<meta property="og:description" content="论文笔记–Cross-modal Deep Face Normals with Deactivable Skip Connections摘要​        当下单目重建多采用数据驱动的策略，但是受限于真实标签数据的缺乏，导致这种方法很困难。本文提出一种跨模态网络架构，可以利用所有图像和法线数据（无论是否配对），通过encoder和decoder的跳跃连接实现面部细节在图像和法线维度上进行传递。本">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143501613.png">
+<meta property="og:image" content="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143717592.png">
+<meta property="og:image" content="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/论文笔记--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections.assets/image-20220708143803733.png">
+<meta property="og:image" content="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/论文笔记--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections.assets/image-20220708144012178.png">
+<meta property="og:image" content="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/论文笔记--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections.assets/image-20220708143915072.png">
+<meta property="article:published_time" content="2022-09-24T07:40:30.497Z">
+<meta property="article:modified_time" content="2022-07-08T09:02:24.996Z">
+<meta property="article:author" content="XS">
+<meta property="article:tag" content="Deep Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143501613.png">
+
+
+<link rel="canonical" href="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/","path":"2022/09/24/论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections/","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | FleetingSmile Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">FleetingSmile Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>About</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E2%80%93Cross-modal-Deep-Face-Normals-with-Deactivable-Skip-Connections"><span class="nav-number">1.</span> <span class="nav-text">论文笔记–Cross-modal Deep Face Normals with Deactivable Skip Connections</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%A1%E7%8C%AE"><span class="nav-number">1.2.</span> <span class="nav-text">贡献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#deactivable-skip-connection%EF%BC%9A"><span class="nav-number">1.3.0.0.1.</span> <span class="nav-text">deactivable skip connection：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#loss-function%EF%BC%9A"><span class="nav-number">1.3.0.0.2.</span> <span class="nav-text">loss function：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C"><span class="nav-number">1.4.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">1.5.</span> <span class="nav-text">问题</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="XS"
+      src="/images/IMG_0045.jpg">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/IMG_0045.jpg">
+      <meta itemprop="name" content="XS">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FleetingSmile Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | FleetingSmile Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-09-24 15:40:30" itemprop="dateCreated datePublished" datetime="2022-09-24T15:40:30+08:00">2022-09-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-07-08 17:02:24" itemprop="dateModified" datetime="2022-07-08T17:02:24+08:00">2022-07-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="论文笔记–Cross-modal-Deep-Face-Normals-with-Deactivable-Skip-Connections"><a href="#论文笔记–Cross-modal-Deep-Face-Normals-with-Deactivable-Skip-Connections" class="headerlink" title="论文笔记–Cross-modal Deep Face Normals with Deactivable Skip Connections"></a><em><strong>论文笔记–Cross-modal Deep Face Normals with Deactivable Skip Connections</strong></em></h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>​        当下单目重建多采用数据驱动的策略，但是受限于真实标签数据的缺乏，导致这种方法很困难。本文提出一种跨模态网络架构，可以利用所有图像和法线数据（无论是否配对），通过encoder和decoder的跳跃连接实现面部细节在图像和法线维度上进行传递。本文方法的核心就是一个融合deactivable skip connection的模块，该方法通过相同的端到端架构集成了自动编码和图像到法线转换的功能。</p>
+<h2 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h2><ul>
+<li>一种可以利用跨模态学习从单张人脸图像估计法线的框架；</li>
+<li>可停用的跳跃连接架构模式（deactivable skip connection）</li>
+<li>SOTA效果</li>
+</ul>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143501613.png" alt="image-20220708143501613" style="zoom:50%;" />
+
+
+
+<p>​      该架构允许利用成对或非成对的图像/法线数据进行图像到法线的转换（$I$-&gt;$\hat{N}$），在训练期间通过图像到图像（$I$-&gt;$\hat{I}$）和法线到法线（$N$-&gt;$\hat{N}$）的转换过程进行正则化。$E_I$到$D_N$的跳跃连接可以传递面部细节信息。</p>
+<h5 id="deactivable-skip-connection："><a href="#deactivable-skip-connection：" class="headerlink" title="deactivable skip connection："></a>deactivable skip connection：</h5><p>![image-20220707185938605](论文笔记–Cross-modal Deep Face Normals with Deactivable Skip Connections.assets/image-20220707185938605.png)</p>
+<p>在特征图从encoder到decoder传递过程中，这个skip connection可以选择开启或关闭。</p>
+<p>在进行 normal-&gt;normal ($E_N$-&gt;$D_N$) 传递过程中，$D_N$的每一层输出$F_{D}^{n-i}=f(F_{D}^{n-i-1})$</p>
+<p>在进行 image-&gt;normal（$E_I$-&gt;$D_N$）传递过程中，$D_N$的每一层输出$F_{D}^{n-i}$是由  前一层输出的$f(F_{D}^{n-i-1})$上和$F_E^i$同样通道数量的特征图，与$F_E^i$特征图进行element-wise max操作，得到新的特征图后和剩余通道数量的$f(F_{D}^{n-i-1})$特征图进行相加得到。</p>
+<p>这样做允许在不发生传输操作时将信息从编码器传输到解码器，而不会降低性能，就像自编码器正常工作时一样。</p>
+<h5 id="loss-function："><a href="#loss-function：" class="headerlink" title="loss function："></a>loss function：</h5><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143717592.png" alt="image-20220708143717592" style="zoom: 80%;" />
+
+
+
+<p>训练过程只能对一个模态进行输入，要么是法线图要么是原图。</p>
+<ul>
+<li>当有原图输入，同时也有图片和法线图的ground truth时，先进行normal to normal，再进行 image to normal，最后进行image to image。上述的两个loss值进行同样比重求和得到最终loss。</li>
+<li>当只有images或者只有normals时，就只进行image to image或者normal to normal的传输过程。</li>
+</ul>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><img src="论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections.assets/image-20220708143803733.png" alt="image-20220708143803733" style="zoom:50%;" />
+
+<img src="论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections.assets/image-20220708144012178.png" alt="image-20220708144012178" style="zoom:67%;" />
+
+<img src="论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections.assets/image-20220708143915072.png" alt="image-20220708143915072" style="zoom:67%;" />
+
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>跳跃连接为什么只用在$E_I$到$D_N$的过程，其他传输过程为什么不用跳跃连接</p>
+<p>论文验证有列出3维人脸模型的重构效果，具体是怎么生成这个3维人脸的，method没有涉及这块，可能在验证实验部分有说。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Accurate%203D%20Face%20Reconstruction%20with%20Weakly-Supervised%20LearningFrom%20Single%20Image%20to%20Image%20Set/" rel="prev" title="">
+                  <i class="fa fa-chevron-left"></i> 
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Learning%20an%20Animatable%20Detailed%203D%20Face%20Model%20from%20In-The-Wild%20Images/" rel="next" title="">
+                   <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

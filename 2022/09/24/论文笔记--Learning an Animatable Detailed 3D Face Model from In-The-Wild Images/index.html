@@ -20,28 +20,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"the-fleetinglove.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+    <meta name="description" content="论文笔记–Learning an Animatable Detailed 3D Face Model from In-The-Wild Images现有不足现有的一些方法局限在于产生的人脸无法逼真地动画化，这些方法都没有模拟皱纹如何随表情变化。 部分方法是在高质量人脸扫描数据集下训练且在野外环境下的泛化能力不足，重建的人脸鲁棒性不足。 主要贡献   第一种从野外图像去学习动画置换贴图的方法，通过多">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World!!!">
-<meta property="og:url" content="http://the-fleetinglove.github.io/2022/09/23/hello-world/index.html">
+<meta property="og:title" content="FleetingSmile Blog">
+<meta property="og:url" content="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Learning%20an%20Animatable%20Detailed%203D%20Face%20Model%20from%20In-The-Wild%20Images/index.html">
 <meta property="og:site_name" content="FleetingSmile Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="论文笔记–Learning an Animatable Detailed 3D Face Model from In-The-Wild Images现有不足现有的一些方法局限在于产生的人脸无法逼真地动画化，这些方法都没有模拟皱纹如何随表情变化。 部分方法是在高质量人脸扫描数据集下训练且在野外环境下的泛化能力不足，重建的人脸鲁棒性不足。 主要贡献   第一种从野外图像去学习动画置换贴图的方法，通过多">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-09-23T02:18:34.651Z">
-<meta property="article:modified_time" content="2022-09-24T07:39:40.976Z">
+<meta property="article:published_time" content="2022-09-24T07:40:30.511Z">
+<meta property="article:modified_time" content="2022-06-02T01:36:50.000Z">
 <meta property="article:author" content="XS">
 <meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://the-fleetinglove.github.io/2022/09/23/hello-world/">
+<link rel="canonical" href="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Learning%20an%20Animatable%20Detailed%203D%20Face%20Model%20from%20In-The-Wild%20Images/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://the-fleetinglove.github.io/2022/09/23/hello-world/","path":"2022/09/23/hello-world/","title":"Hello World!!!"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Learning%20an%20Animatable%20Detailed%203D%20Face%20Model%20from%20In-The-Wild%20Images/","path":"2022/09/24/论文笔记--Learning an Animatable Detailed 3D Face Model from In-The-Wild Images/","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Hello World!!! | FleetingSmile Blog</title>
+<title> | FleetingSmile Blog</title>
   
 
 
@@ -117,7 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E2%80%93Learning-an-Animatable-Detailed-3D-Face-Model-from-In-The-Wild-Images"><span class="nav-number">1.</span> <span class="nav-text">论文笔记–Learning an Animatable Detailed 3D Face Model from In-The-Wild Images</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E6%9C%89%E4%B8%8D%E8%B6%B3"><span class="nav-number">1.1.</span> <span class="nav-text">现有不足</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE"><span class="nav-number">1.2.</span> <span class="nav-text">主要贡献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86"><span class="nav-number">1.3.</span> <span class="nav-text">预备知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E4%BD%93%E6%A1%86%E6%9E%B6"><span class="nav-number">1.4.</span> <span class="nav-text">主体框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.</span> <span class="nav-text">损失函数</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -177,7 +177,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://the-fleetinglove.github.io/2022/09/23/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Learning%20an%20Animatable%20Detailed%203D%20Face%20Model%20from%20In-The-Wild%20Images/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_0045.jpg">
@@ -190,12 +190,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Hello World!!! | FleetingSmile Blog">
+      <meta itemprop="name" content=" | FleetingSmile Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World!!!
+          
         </h1>
 
         <div class="post-meta-container">
@@ -206,14 +206,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-09-23 10:18:34" itemprop="dateCreated datePublished" datetime="2022-09-23T10:18:34+08:00">2022-09-23</time>
+      <time title="Created: 2022-09-24 15:40:30" itemprop="dateCreated datePublished" datetime="2022-09-24T15:40:30+08:00">2022-09-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-24 15:39:40" itemprop="dateModified" datetime="2022-09-24T15:39:40+08:00">2022-09-24</time>
+      <time title="Modified: 2022-06-02 09:36:50" itemprop="dateModified" datetime="2022-06-02T09:36:50+08:00">2022-06-02</time>
     </span>
 
   
@@ -226,22 +226,21 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+        <h1 id="论文笔记–Learning-an-Animatable-Detailed-3D-Face-Model-from-In-The-Wild-Images"><a href="#论文笔记–Learning-an-Animatable-Detailed-3D-Face-Model-from-In-The-Wild-Images" class="headerlink" title="论文笔记–Learning an Animatable Detailed 3D Face Model from In-The-Wild Images"></a><em><strong>论文笔记–Learning an Animatable Detailed 3D Face Model from In-The-Wild Images</strong></em></h1><h2 id="现有不足"><a href="#现有不足" class="headerlink" title="现有不足"></a>现有不足</h2><p>现有的一些方法局限在于产生的人脸无法逼真地动画化，这些方法都没有模拟皱纹如何随表情变化。</p>
+<p>部分方法是在高质量人脸扫描数据集下训练且在野外环境下的泛化能力不足，重建的人脸鲁棒性不足。</p>
+<h2 id="主要贡献"><a href="#主要贡献" class="headerlink" title="主要贡献"></a>主要贡献</h2><ul>
+<li>  第一种从<strong>野外图像</strong>去学习<strong>动画</strong>置换贴图的方法，通过多样情感参数可以合成较为可信的几何细节。</li>
+<li>  提出<strong>细节一致性损失</strong>，将<strong>情感依赖</strong>的面部细节和<strong>身份依赖</strong>的面部细节区分开来。</li>
+<li>  <strong>单张图片输入</strong>，重建的几何细节具有<strong>鲁棒性</strong>。</li>
+<li>  SOTA结果</li>
+<li>  代码开源</li>
+</ul>
+<h2 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h2><p>3DMM：采用FLAME模型；</p>
+<p>外观模型：</p>
+<p>相机模型：</p>
+<p>光照模型：</p>
+<p>纹理渲染：</p>
+<h2 id="主体框架"><a href="#主体框架" class="headerlink" title="主体框架"></a>主体框架</h2><h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2>
     </div>
 
     
@@ -254,10 +253,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/" rel="prev" title="">
+                  <i class="fa fa-chevron-left"></i> 
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/09/24/ReviewFaceRecon/" rel="next" title="Review Face Reconstruction">
-                  Review Face Reconstruction <i class="fa fa-chevron-right"></i>
+                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/" rel="next" title="">
+                   <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
