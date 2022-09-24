@@ -23,7 +23,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network">
 <meta property="og:url" content="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/index.html">
-<meta property="og:site_name" content="FleetingSmile Blog">
+<meta property="og:site_name" content="ZJU_XS">
 <meta property="og:description" content="摘要​    人脸的3维形状是易于区分的，但尽管如此，3维人脸仍很少用于人脸识别以及3维人脸数据经常是在受控环境下采集的。现有的方法在野外环境下对3D人脸的估计是不稳定的，会因同一主题的不同照片而发生变化，要么是过拟合，要么是过于通用（平均脸）。本文直接对输入图片处理，通过CNN回归3DMM的形状和纹理参数。本文通过提供一种生成大量标记示例的方法来克服所需的训练数据不足的问题。本文方法在MICC数">
 <meta property="og:locale">
 <meta property="og:image" content="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220428131155413.png">
@@ -46,7 +46,7 @@
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/","path":"2022/09/24/论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network/","title":"论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network | FleetingSmile Blog</title>
+<title>论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network | ZJU_XS</title>
   
 
 
@@ -77,7 +77,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <p class="site-title">FleetingSmile Blog</p>
+      <p class="site-title">ZJU_XS</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -91,7 +91,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
   </ul>
 </nav>
 
@@ -129,7 +129,7 @@
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="XS"
-      src="/images/IMG_0045.jpg">
+      src="/FaceReconPaper/images/IMG_0045.jpg">
   <p class="site-author-name" itemprop="name">XS</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -148,6 +148,14 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/The-FleetingLove" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;The-FleetingLove" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shenxie@zju.edu.cn" title="E-Mail → mailto:shenxie@zju.edu.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
 
 
 
@@ -185,17 +193,17 @@
     <link itemprop="mainEntityOfPage" href="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/IMG_0045.jpg">
+      <meta itemprop="image" content="/FaceReconPaper/images/IMG_0045.jpg">
       <meta itemprop="name" content="XS">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FleetingSmile Blog">
+      <meta itemprop="name" content="ZJU_XS">
       <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network | FleetingSmile Blog">
+      <meta itemprop="name" content="论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network | ZJU_XS">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -283,13 +291,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--To%20Fit%20or%20Not%20to%20Fit%20Model-based%20Face%20Reconstruction%20and%20Occlusion%20Segmentation%20from%20Weak%20Supervision/" rel="prev" title="论文笔记--To Fit or Not to Fit Model-based Face Reconstruction and Occlusion Segmentation from Weak Supervision">
-                  <i class="fa fa-chevron-left"></i> 论文笔记--To Fit or Not to Fit Model-based Face Reconstruction and Occlusion Segmentation from Weak Supervision
+                <a href="/2022/09/23/hello-world/" rel="prev" title="Hello World!!!">
+                  <i class="fa fa-chevron-left"></i> Hello World!!!
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Accurate%203D%20Face%20Reconstruction%20with%20Weakly-Supervised%20LearningFrom%20Single%20Image%20to%20Image%20Set/" rel="next" title="论文笔记--Accurate 3D Face Reconstruction with Weakly-Supervised Learning:From Single Image to Image Set">
-                  论文笔记--Accurate 3D Face Reconstruction with Weakly-Supervised Learning:From Single Image to Image Set <i class="fa fa-chevron-right"></i>
+                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--To%20Fit%20or%20Not%20to%20Fit%20Model-based%20Face%20Reconstruction%20and%20Occlusion%20Segmentation%20from%20Weak%20Supervision/" rel="next" title="论文笔记--To Fit or Not to Fit Model-based Face Reconstruction and Occlusion Segmentation from Weak Supervision">
+                  论文笔记--To Fit or Not to Fit Model-based Face Reconstruction and Occlusion Segmentation from Weak Supervision <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
