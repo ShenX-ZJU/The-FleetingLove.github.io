@@ -20,18 +20,18 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"the-fleetinglove.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="论文笔记–Accurate 3D Face Reconstruction with Weakly-Supervised Learning:From Single Image to Image Set1 摘要​        最近，基于深度学习的3D人脸重建方法在质量和效率上都显现出可喜的成果。然而，深度神经网络的训练通常需要大量的数据，而具有真实3D人脸形状标签的人脸图像却很少。该文章提出一种深度">
+    <meta name="description" content="1 摘要​        最近，基于深度学习的3D人脸重建方法在质量和效率上都显现出可喜的成果。然而，深度神经网络的训练通常需要大量的数据，而具有真实3D人脸形状标签的人脸图像却很少。该文章提出一种深度3D人脸重建方法：  利用一个稳健的混合损失函数进行弱监督学习，该函数同时考虑了 image-level 和 perception-level 的鲁棒性  （ image-level损失指的是重建的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FleetingSmile Blog">
+<meta property="og:title" content="论文笔记--Accurate 3D Face Reconstruction with Weakly-Supervised Learning:From Single Image to Image Set">
 <meta property="og:url" content="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Accurate%203D%20Face%20Reconstruction%20with%20Weakly-Supervised%20LearningFrom%20Single%20Image%20to%20Image%20Set/index.html">
 <meta property="og:site_name" content="FleetingSmile Blog">
-<meta property="og:description" content="论文笔记–Accurate 3D Face Reconstruction with Weakly-Supervised Learning:From Single Image to Image Set1 摘要​        最近，基于深度学习的3D人脸重建方法在质量和效率上都显现出可喜的成果。然而，深度神经网络的训练通常需要大量的数据，而具有真实3D人脸形状标签的人脸图像却很少。该文章提出一种深度">
+<meta property="og:description" content="1 摘要​        最近，基于深度学习的3D人脸重建方法在质量和效率上都显现出可喜的成果。然而，深度神经网络的训练通常需要大量的数据，而具有真实3D人脸形状标签的人脸图像却很少。该文章提出一种深度3D人脸重建方法：  利用一个稳健的混合损失函数进行弱监督学习，该函数同时考虑了 image-level 和 perception-level 的鲁棒性  （ image-level损失指的是重建的">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://gitee.com/Forever_XS/markdown_paper_picture/raw/master/blog_casia/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_16511301992429.png">
 <meta property="og:image" content="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220429163911623.png">
 <meta property="og:image" content="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220429153620067.png">
-<meta property="article:published_time" content="2022-09-24T07:40:30.495Z">
-<meta property="article:modified_time" content="2022-07-12T03:48:57.664Z">
+<meta property="article:published_time" content="2022-09-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-24T07:44:44.870Z">
 <meta property="article:author" content="XS">
 <meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary">
@@ -42,10 +42,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Accurate%203D%20Face%20Reconstruction%20with%20Weakly-Supervised%20LearningFrom%20Single%20Image%20to%20Image%20Set/","path":"2022/09/24/论文笔记--Accurate 3D Face Reconstruction with Weakly-Supervised LearningFrom Single Image to Image Set/","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Accurate%203D%20Face%20Reconstruction%20with%20Weakly-Supervised%20LearningFrom%20Single%20Image%20to%20Image%20Set/","path":"2022/09/24/论文笔记--Accurate 3D Face Reconstruction with Weakly-Supervised LearningFrom Single Image to Image Set/","title":"论文笔记--Accurate 3D Face Reconstruction with Weakly-Supervised Learning:From Single Image to Image Set"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title> | FleetingSmile Blog</title>
+<title>论文笔记--Accurate 3D Face Reconstruction with Weakly-Supervised Learning:From Single Image to Image Set | FleetingSmile Blog</title>
   
 
 
@@ -121,7 +121,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E2%80%93Accurate-3D-Face-Reconstruction-with-Weakly-Supervised-Learning-From-Single-Image-to-Image-Set"><span class="nav-number">1.</span> <span class="nav-text">论文笔记–Accurate 3D Face Reconstruction with Weakly-Supervised Learning:From Single Image to Image Set</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%91%98%E8%A6%81"><span class="nav-number">1.1.</span> <span class="nav-text">1 摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.2.</span> <span class="nav-text">2 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">3 方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 整体架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E6%A8%A1%E5%9E%8B%E7%90%86%E5%BF%B5"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 模型理念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E5%8D%95%E5%BC%A0%E5%9B%BE%E7%89%87%E4%BA%BA%E8%84%B8%E9%87%8D%E5%BB%BA"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 单张图片人脸重建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-Image-Level-Loss"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">3.3.1 Image-Level Loss</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-1-1-Robust-Photometric-Loss"><span class="nav-number">1.3.3.1.1.</span> <span class="nav-text">3.3.1.1 Robust Photometric Loss</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-1-2-Lamdmark-Loss"><span class="nav-number">1.3.3.1.2.</span> <span class="nav-text">3.3.1.2 Lamdmark Loss</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-2-Perception-Level-Loss"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">3.3.2 Perception-Level Loss</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-3-%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">3.3.3 正则化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-4-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.3.4.</span> <span class="nav-text">3.3.4 损失函数总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E5%A4%9A%E5%BC%A0%E5%9B%BE%E7%89%87%E4%BA%BA%E8%84%B8%E9%87%8D%E5%BB%BA"><span class="nav-number">1.3.4.</span> <span class="nav-text">3.4 多张图片人脸重建</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">1 摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">2 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">3 方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 整体架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E6%A8%A1%E5%9E%8B%E7%90%86%E5%BF%B5"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 模型理念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E5%8D%95%E5%BC%A0%E5%9B%BE%E7%89%87%E4%BA%BA%E8%84%B8%E9%87%8D%E5%BB%BA"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 单张图片人脸重建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-Image-Level-Loss"><span class="nav-number">3.3.1.</span> <span class="nav-text">3.3.1 Image-Level Loss</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-1-1-Robust-Photometric-Loss"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">3.3.1.1 Robust Photometric Loss</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-1-2-Lamdmark-Loss"><span class="nav-number">3.3.1.2.</span> <span class="nav-text">3.3.1.2 Lamdmark Loss</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-2-Perception-Level-Loss"><span class="nav-number">3.3.2.</span> <span class="nav-text">3.3.2 Perception-Level Loss</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-3-%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">3.3.3.</span> <span class="nav-text">3.3.3 正则化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-4-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93"><span class="nav-number">3.3.4.</span> <span class="nav-text">3.3.4 损失函数总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E5%A4%9A%E5%BC%A0%E5%9B%BE%E7%89%87%E4%BA%BA%E8%84%B8%E9%87%8D%E5%BB%BA"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 多张图片人脸重建</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -136,7 +136,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -194,12 +194,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | FleetingSmile Blog">
+      <meta itemprop="name" content="论文笔记--Accurate 3D Face Reconstruction with Weakly-Supervised Learning:From Single Image to Image Set | FleetingSmile Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          论文笔记--Accurate 3D Face Reconstruction with Weakly-Supervised Learning:From Single Image to Image Set
         </h1>
 
         <div class="post-meta-container">
@@ -209,15 +209,18 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-09-24 15:40:30" itemprop="dateCreated datePublished" datetime="2022-09-24T15:40:30+08:00">2022-09-24</time>
+      <time title="Created: 2022-09-24 00:00:00 / Modified: 15:44:44" itemprop="dateCreated datePublished" datetime="2022-09-24T00:00:00+08:00">2022-09-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
+        <i class="far fa-folder"></i>
       </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-12 11:48:57" itemprop="dateModified" datetime="2022-07-12T11:48:57+08:00">2022-07-12</time>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Face-Recon/" itemprop="url" rel="index"><span itemprop="name">Face Recon</span></a>
+        </span>
     </span>
 
   
@@ -230,7 +233,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="论文笔记–Accurate-3D-Face-Reconstruction-with-Weakly-Supervised-Learning-From-Single-Image-to-Image-Set"><a href="#论文笔记–Accurate-3D-Face-Reconstruction-with-Weakly-Supervised-Learning-From-Single-Image-to-Image-Set" class="headerlink" title="论文笔记–Accurate 3D Face Reconstruction with Weakly-Supervised Learning:From Single Image to Image Set"></a><em><strong>论文笔记–Accurate 3D Face Reconstruction with Weakly-Supervised Learning:From Single Image to Image Set</strong></em></h1><h2 id="1-摘要"><a href="#1-摘要" class="headerlink" title="1 摘要"></a><strong>1 摘要</strong></h2><p>​        最近，基于深度学习的3D人脸重建方法在质量和效率上都显现出可喜的成果。然而，深度神经网络的训练通常需要大量的数据，而具有真实3D人脸形状标签的人脸图像却很少。该文章提出一种深度3D人脸重建方法：</p>
+        <h2 id="1-摘要"><a href="#1-摘要" class="headerlink" title="1 摘要"></a><strong>1 摘要</strong></h2><p>​        最近，基于深度学习的3D人脸重建方法在质量和效率上都显现出可喜的成果。然而，深度神经网络的训练通常需要大量的数据，而具有真实3D人脸形状标签的人脸图像却很少。该文章提出一种深度3D人脸重建方法：</p>
 <ol>
 <li><p><em><strong>利用一个稳健的混合损失函数进行弱监督学习，该函数同时考虑了 image-level 和 perception-level 的鲁棒性</strong></em></p>
 <p> <em><strong>（ image-level损失指的是重建的人脸模型渲染得到的图片和输入图片的像素值应尽可能一致；perception-level损失指的是重建的人脸模型渲染得到的图片和输入图片的内在特征应尽可能一致 ）</strong></em></p>
@@ -240,6 +243,8 @@
 </ol>
 <p>​        文章提出的方法快速，准确且对遮挡和大姿态的图像具有鲁棒性。该文章在MICC Florence 和 Facewarehouse数据集上进行实验论证，同时系统地与最近几年的15种方法进行对比，实验结果证明本文提出的方法展现出了目前最先进的性能。</p>
 <p>​        Code (Pytorch): <a target="_blank" rel="noopener" href="https://github.com/sicxu/Deep3DFaceRecon_pytorch">https://github.com/sicxu/Deep3DFaceRecon_pytorch</a></p>
+<span id="more"></span>
+
 <h2 id="2-介绍"><a href="#2-介绍" class="headerlink" title="2 介绍"></a><strong>2 介绍</strong></h2><p>​        从非受限场景下的2D图像中忠实地恢复人脸的3D形状是一项具有挑战性的任务，并且具有许多应用，例如人脸识别，面部媒体操控，人脸动画等。最近，人们对使用CNN来实现单个图像重建 3D 人脸的兴趣激增，以代替使用复杂且要大量优化的传统方法。由于真实的3D人脸数据稀少，以往的许多方法都使用合成数据或者使用传统方法拟合的3D形状作为替代形状标签，但是这种做法会受到域差距和不准确的训练标签影响。</p>
 <p>​        无监督学习的关键是一个可微的图像形成过程，它使用网络预测来渲染人脸图像，监督信号源于输入图像和渲染对应物之间的差异。该问题提出了混合级损失函数和一种新颖的基于肤色的光度误差注意策略，该方法对人脸遮挡问题有一定解决。该文章也在重点研究同一目标多图像的人脸重建问题。</p>
 <p>​        该文章训练一个辅助网络。借助该网络回归得到承载身份的3D模型系数的置信度，并通过基于置信度的聚合获得最终的身份系数。它可以利用位姿差异更好地融合互补信息，学习更准确的3D形状。</p>
@@ -275,13 +280,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/09/24/ReviewFaceRecon/" rel="prev" title="Review Face Reconstruction">
-                  <i class="fa fa-chevron-left"></i> Review Face Reconstruction
+                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/" rel="prev" title="论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections***">
+                  <i class="fa fa-chevron-left"></i> 论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections***
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/" rel="next" title="">
-                   <i class="fa fa-chevron-right"></i>
+                <a href="/2022/09/24/ReviewFaceRecon/" rel="next" title="Review Face Reconstruction">
+                  Review Face Reconstruction <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

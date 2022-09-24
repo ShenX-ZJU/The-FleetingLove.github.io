@@ -20,20 +20,20 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"the-fleetinglove.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="论文笔记–Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network摘要​        人脸的3维形状是易于区分的，但尽管如此，3维人脸仍很少用于人脸识别以及3维人脸数据经常是在受控环境下采集的。现有的方法在野外环境下对3D人脸的估计是不稳定的，会因同一主题的不同照片而发生变化，">
+    <meta name="description" content="摘要​    人脸的3维形状是易于区分的，但尽管如此，3维人脸仍很少用于人脸识别以及3维人脸数据经常是在受控环境下采集的。现有的方法在野外环境下对3D人脸的估计是不稳定的，会因同一主题的不同照片而发生变化，要么是过拟合，要么是过于通用（平均脸）。本文直接对输入图片处理，通过CNN回归3DMM的形状和纹理参数。本文通过提供一种生成大量标记示例的方法来克服所需的训练数据不足的问题。本文方法在MICC数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FleetingSmile Blog">
+<meta property="og:title" content="论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network">
 <meta property="og:url" content="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/index.html">
 <meta property="og:site_name" content="FleetingSmile Blog">
-<meta property="og:description" content="论文笔记–Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network摘要​        人脸的3维形状是易于区分的，但尽管如此，3维人脸仍很少用于人脸识别以及3维人脸数据经常是在受控环境下采集的。现有的方法在野外环境下对3D人脸的估计是不稳定的，会因同一主题的不同照片而发生变化，">
+<meta property="og:description" content="摘要​    人脸的3维形状是易于区分的，但尽管如此，3维人脸仍很少用于人脸识别以及3维人脸数据经常是在受控环境下采集的。现有的方法在野外环境下对3D人脸的估计是不稳定的，会因同一主题的不同照片而发生变化，要么是过拟合，要么是过于通用（平均脸）。本文直接对输入图片处理，通过CNN回归3DMM的形状和纹理参数。本文通过提供一种生成大量标记示例的方法来克服所需的训练数据不足的问题。本文方法在MICC数">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220428131155413.png">
 <meta property="og:image" content="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220428131711825.png">
 <meta property="og:image" content="c:/Users/Admin/AppData/Roaming/Typora/typora-user-images/image-20220428132309766.png">
 <meta property="og:image" content="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220428132703834.png">
 <meta property="og:image" content="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220428132730719.png">
-<meta property="article:published_time" content="2022-09-24T07:40:30.513Z">
-<meta property="article:modified_time" content="2022-05-12T08:48:04.267Z">
+<meta property="article:published_time" content="2022-09-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-24T07:47:25.697Z">
 <meta property="article:author" content="XS">
 <meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary">
@@ -44,10 +44,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/","path":"2022/09/24/论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network/","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/","path":"2022/09/24/论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network/","title":"论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title> | FleetingSmile Blog</title>
+<title>论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network | FleetingSmile Blog</title>
   
 
 
@@ -123,7 +123,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E2%80%93Regressing-Robust-and-Discriminative-3D-Morphable-Models-with-a-very-Deep-Neural-Network"><span class="nav-number">1.</span> <span class="nav-text">论文笔记–Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.2.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Generating-Training-data"><span class="nav-number">1.3.1.</span> <span class="nav-text">Generating Training data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Learning-to-regress-pooled-3DMM"><span class="nav-number">1.3.2.</span> <span class="nav-text">Learning to regress pooled 3DMM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-based-3D-3D-recognition"><span class="nav-number">1.3.3.</span> <span class="nav-text">Parameter based 3D-3D recognition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">1.4.</span> <span class="nav-text">实验结果</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Generating-Training-data"><span class="nav-number">3.1.</span> <span class="nav-text">Generating Training data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Learning-to-regress-pooled-3DMM"><span class="nav-number">3.2.</span> <span class="nav-text">Learning to regress pooled 3DMM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-based-3D-3D-recognition"><span class="nav-number">3.3.</span> <span class="nav-text">Parameter based 3D-3D recognition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">4.</span> <span class="nav-text">实验结果</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -138,7 +138,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -196,12 +196,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | FleetingSmile Blog">
+      <meta itemprop="name" content="论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network | FleetingSmile Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network
         </h1>
 
         <div class="post-meta-container">
@@ -211,15 +211,18 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-09-24 15:40:30" itemprop="dateCreated datePublished" datetime="2022-09-24T15:40:30+08:00">2022-09-24</time>
+      <time title="Created: 2022-09-24 00:00:00 / Modified: 15:47:25" itemprop="dateCreated datePublished" datetime="2022-09-24T00:00:00+08:00">2022-09-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
+        <i class="far fa-folder"></i>
       </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-05-12 16:48:04" itemprop="dateModified" datetime="2022-05-12T16:48:04+08:00">2022-05-12</time>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Face-Recon/" itemprop="url" rel="index"><span itemprop="name">Face Recon</span></a>
+        </span>
     </span>
 
   
@@ -232,11 +235,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="论文笔记–Regressing-Robust-and-Discriminative-3D-Morphable-Models-with-a-very-Deep-Neural-Network"><a href="#论文笔记–Regressing-Robust-and-Discriminative-3D-Morphable-Models-with-a-very-Deep-Neural-Network" class="headerlink" title="论文笔记–Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network"></a><em><strong>论文笔记–Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network</strong></em></h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><em><strong>摘要</strong></em></h2><p>​        人脸的3维形状是易于区分的，但尽管如此，3维人脸仍很少用于人脸识别以及3维人脸数据经常是在受控环境下采集的。现有的方法在野外环境下对3D人脸的估计是不稳定的，会因同一主题的不同照片而发生变化，要么是过拟合，要么是过于通用（平均脸）。本文直接对输入图片处理，通过CNN回归3DMM的形状和纹理参数。<strong>本文通过提供一种生成大量标记示例的方法来克服所需的训练数据不足的问题</strong>。本文方法在<strong>MICC数据集</strong>实现SOTA效果，同时在人脸识别效果上也有成效，本文在人脸识别上是使用3D人脸形状作为表示，而不是其他系统使用的不透明深度特征向量。</p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a><em><strong>介绍</strong></em></h2><p>​        3D人脸形状是易于辨识的，因为每个人的人脸形状是不同的，且人脸形状不受光照和纹理等因素影响。目前没有关于在野外环境中成功使用单视图人脸形状估计来识别具有挑战性的无约束人脸的方法。</p>
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><em><strong>摘要</strong></em></h2><p>​    人脸的3维形状是易于区分的，但尽管如此，3维人脸仍很少用于人脸识别以及3维人脸数据经常是在受控环境下采集的。现有的方法在野外环境下对3D人脸的估计是不稳定的，会因同一主题的不同照片而发生变化，要么是过拟合，要么是过于通用（平均脸）。本文直接对输入图片处理，通过CNN回归3DMM的形状和纹理参数。<strong>本文通过提供一种生成大量标记示例的方法来克服所需的训练数据不足的问题</strong>。本文方法在<strong>MICC数据集</strong>实现SOTA效果，同时在人脸识别效果上也有成效，本文在人脸识别上是使用3D人脸形状作为表示，而不是其他系统使用的不透明深度特征向量。</p>
+<span id="more"></span>
+
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a><em><strong>介绍</strong></em></h2><p>​    3D人脸形状是易于辨识的，因为每个人的人脸形状是不同的，且人脸形状不受光照和纹理等因素影响。目前没有关于在野外环境中成功使用单视图人脸形状估计来识别具有挑战性的无约束人脸的方法。</p>
 <img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220428131155413.png" alt="image-20220428131155413" style="zoom: 33%;" />
 
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a><em><strong>方法</strong></em></h2><p>​        本文借助深度卷积神经网络来实现单张图片输入，回归得到3DMM面部形状参数。训练这样的CNN需要大量的带有正确3D面部形状标签的无约束面部数据。作者认为，之前没有将CNN用在三维人脸建模方面，主要是因为从二维图像重建三维人脸模型，我们需要回归高维的形状参数，这就要求非常深的网络，而训练非常深的网络又需要大量的训练数据，已知的三维人脸模型的训练集非常少。针对这一问题，作者提出利用一个对象的多姿态人脸图片生成准确率相当高的三维人脸形状（Automated 3D face reconstruction from multiple images using quality measures），然后把生成的模型作为训练集；对于鲁棒性和区别性的人脸形状怎么解决呢？借鉴二维空间中的深度卷积神经网络模型，而且模型还是现成的~</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a><em><strong>方法</strong></em></h2><p>​    本文借助深度卷积神经网络来实现单张图片输入，回归得到3DMM面部形状参数。训练这样的CNN需要大量的带有正确3D面部形状标签的无约束面部数据。作者认为，之前没有将CNN用在三维人脸建模方面，主要是因为从二维图像重建三维人脸模型，我们需要回归高维的形状参数，这就要求非常深的网络，而训练非常深的网络又需要大量的训练数据，已知的三维人脸模型的训练集非常少。针对这一问题，作者提出利用一个对象的多姿态人脸图片生成准确率相当高的三维人脸形状（Automated 3D face reconstruction from multiple images using quality measures），然后把生成的模型作为训练集；对于鲁棒性和区别性的人脸形状怎么解决呢？借鉴二维空间中的深度卷积神经网络模型，而且模型还是现成的~</p>
 <p>​        目前有三个主要现状认识：</p>
 <ol>
 <li><p>利用同一人脸的多辐图像可以得到精确的三维估计</p>
@@ -279,13 +284,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Learning%20an%20Animatable%20Detailed%203D%20Face%20Model%20from%20In-The-Wild%20Images/" rel="prev" title="">
-                  <i class="fa fa-chevron-left"></i> 
+                <a href="/2022/09/23/hello-world/" rel="prev" title="Hello World!!!">
+                  <i class="fa fa-chevron-left"></i> Hello World!!!
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--To%20Fit%20or%20Not%20to%20Fit%20Model-based%20Face%20Reconstruction%20and%20Occlusion%20Segmentation%20from%20Weak%20Supervision/" rel="next" title="">
-                   <i class="fa fa-chevron-right"></i>
+                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/" rel="next" title="论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections***">
+                  论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections*** <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
