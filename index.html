@@ -127,7 +127,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -162,102 +162,6 @@
 
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--To%20Fit%20or%20Not%20to%20Fit%20Model-based%20Face%20Reconstruction%20and%20Occlusion%20Segmentation%20from%20Weak%20Supervision/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/IMG_0045.jpg">
-      <meta itemprop="name" content="XS">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FleetingSmile Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | FleetingSmile Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--To%20Fit%20or%20Not%20to%20Fit%20Model-based%20Face%20Reconstruction%20and%20Occlusion%20Segmentation%20from%20Weak%20Supervision/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-09-24 15:40:30" itemprop="dateCreated datePublished" datetime="2022-09-24T15:40:30+08:00">2022-09-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-12 16:47:49" itemprop="dateModified" datetime="2022-05-12T16:47:49+08:00">2022-05-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="论文笔记–To-Fit-or-Not-to-Fit-Model-based-Face-Reconstruction-and-Occlusion-Segmentation-from-Weak-Supervision"><a href="#论文笔记–To-Fit-or-Not-to-Fit-Model-based-Face-Reconstruction-and-Occlusion-Segmentation-from-Weak-Supervision" class="headerlink" title="论文笔记–To Fit or Not to Fit: Model-based Face Reconstruction and Occlusion Segmentation from Weak Supervision"></a><em><strong>论文笔记–To Fit or Not to Fit: Model-based Face Reconstruction and Occlusion Segmentation from Weak Supervision</strong></em></h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h2><p>​        由于遮挡物的剧烈的可变性，遮挡下的人脸重建极具挑战性。目前最成功的方法是通过逆向渲染来拟合3D人脸模型，并假设遮挡物给定分割，以此避免拟合遮挡物。然而，训练一个遮挡分割模型需要大量的注释数据。在这项工作中，我们介绍了一种基于模型的 3D 人脸重建方法，该方法对遮挡具有高度鲁棒性，但不需要任何遮挡注释进行训练。在我们的方法中，我们利用了生成人脸模型只能合成人脸而不是遮挡物的事实。我们使用此属性来指导遮挡分割网络的决策过程并完成无监督训练。目<strong>前主要挑战是模型拟合和遮挡分割相互依赖，需要共同推理。</strong>CelebA-HQ、AR 数据库和 Now Challenge 的定性和定量实验表明，所提出的方法在遮挡下实现了最先进的 3D 人 脸重建。此外，尽管在没有任何遮挡注释的情况下进行了训练，但分割网络仍能准确定位遮挡。</p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a><strong>介绍</strong></h2><p>​        单目3D人脸重建旨在估计人脸的姿态、形状和反照率，以及场景的光照条件和相机参数。 从单个图像中解决所有这些因素是一个不适定问题。面部自动编码器面临的一个主要挑战是在野外环境下模型的性能仍然受到诸如遮挡，极端照明和姿势等因素限制。遮挡导致的一个核心问题是人脸模型会拟合被遮挡的人脸区域，导致重建的人脸失真。因此，一个遮挡的鲁棒的3D人脸重建问题就是去决定一张图像中哪些像素是需要去拟合，哪些像素是不需要去拟合的。</p>
-<p>​        在本文的工作中，设计了一种基于模型的人脸重建方法，该方法具有高度的遮挡鲁棒性，不需要任何的人工遮挡注释。特别地，本文提出以一种合作的方式去训练一个面部自编码器和一个分割网络。分割网络决定人脸模型是否需要拟合某一像素的问题，以便人脸重建不受遮挡影响。分割网络采用无监督的方式去训练分割网络，利用了生成的人脸模型只能合成人脸而不能合成遮挡的事实。同时可以利用目标原始图像和渲染生成图像之间的差异作为监督信号来指导分割网络的训练。反过来，人脸重建网络通过使用来自分割网络的预测在拟合期间掩盖被遮挡的像素，从而对遮挡具有鲁棒性。这也导致了协同效应，遮挡分割引导面部自编码器拟合易于分类为面部区域的图像区域，改进的人脸拟合反过来又使得分割网络能够改进其预测。</p>
-<p>​       训练过程遵循EM算法的核心思想，通过在给定当前分割掩码估计的情况下训练面部自编码器和随后基于当前 3D 面部重建训练分割网络之间交替进行。分割网络的无监督训练是通过在估计的遮挡掩码下正则化和保留目标图像和重建图像之间的相似性来实现的，通过引入了几个损失来实现这一点。设计的模型在三份数据集进行验证，分别是<strong>CelebA-HQ, AR, NoW challenge</strong>。</p>
-<p>​        总之，我们在本文中做出了以下贡献：</p>
-<ol>
-<li> 实现一种基于模型的 3D 人脸重建方法，该方法具有高度鲁棒的遮挡，无需任何人工遮挡注释。</li>
-<li> 设计的模型在遮挡下的 3D 人脸重建中实现了SOTA，并在野外图像上提供了面部遮挡掩码的准确估计。</li>
-</ol>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a><strong>方法</strong></h2><p>​        本文的目标是由严重遮挡的单一图片重建出鲁棒的3D人脸。为解决该问题，本文将基于模型的人脸自动编码器 𝑅 与分割网络 𝑆 集成在一起，并在它们之间产生协同作用。分割掩码在模型拟合期间消除遮挡的估计，使重建网络对遮挡具有鲁棒性。重建的结果给分割网络提供了参考，促使分割网络的准确性提升。</p>
-<p><img src="https://gitee.com/Forever_XS/markdown_paper_picture/raw/master/blog_casia/image-20220509144350144.png" alt="image-20220509144350144"></p>
-<p>​        </p>
-<h5 id="Training-the-segmentation-network"><a href="#Training-the-segmentation-network" class="headerlink" title="Training the segmentation network"></a>Training the segmentation network</h5><p>​        在训练分割网络时，人脸自编码器的参数是固定的，只优化分割网络。我们没有寻找标记数据，而是提出了四种损失来增强图像之间的内在相似性。 每个损失都可以包括指示面部或相反的像素。损失在感知级别或像素级别上起作用，以充分利用视觉线索。分割网络训练时的四种损失如下：</p>
-<p><img src="https://gitee.com/Forever_XS/markdown_paper_picture/raw/master/blog_casia/image-20220509151017598.png" alt="image-20220509151017598"></p>
-<p>​          除了上述四种损失外，还添加正则化项损失$L_{bin}=-\sum_x(M(x)-0.5)^2$来鼓励面部掩码是二值化分布（0或1）。总体损失函数式如下，其中$\eta_1=15\quad\eta_2=3\quad\eta_3=0.5\quad\eta_4=2.5\quad\eta_5=10$<br>$$<br>L_S=\eta_1L_{neighbor}+\eta_2L_{dist}+\eta_3L_{area}+\eta_4L_{presv}+\eta_5L_{bin}<br>$$</p>
-<h5 id="Training-the-face-autoencoder"><a href="#Training-the-face-autoencoder" class="headerlink" title="Training the face autoencoder"></a>Training the face autoencoder</h5><p>​          训练面部自编码器网络时，冻结分割网络参数。训练损失函数如下：</p>
-<img src="https://gitee.com/Forever_XS/markdown_paper_picture/raw/master/blog_casia/image-20220509155639300.png" alt="image-20220509155639300" style="zoom: 67%;" />
-
-<h5 id="Unsupervised-Initialization"><a href="#Unsupervised-Initialization" class="headerlink" title="Unsupervised Initialization"></a>Unsupervised Initialization</h5><p>​        使用遮挡的鲁棒损失生成初级掩码：</p>
-<p><img src="https://gitee.com/Forever_XS/markdown_paper_picture/raw/master/blog_casia/image-20220509160342837.png" alt="image-20220509160342837"></p>
-<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><p>​       encoder采用ResNet50，segmentation network采用UNet。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -331,6 +235,92 @@ int main()
 &#125;
 </code></pre>
 
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/IMG_0045.jpg">
+      <meta itemprop="name" content="XS">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FleetingSmile Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | FleetingSmile Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/" class="post-title-link" itemprop="url">论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-09-24 00:00:00 / 修改时间：15:47:25" itemprop="dateCreated datePublished" datetime="2022-09-24T00:00:00+08:00">2022-09-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Face-Recon/" itemprop="url" rel="index"><span itemprop="name">Face Recon</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><em><strong>摘要</strong></em></h2><p>​    人脸的3维形状是易于区分的，但尽管如此，3维人脸仍很少用于人脸识别以及3维人脸数据经常是在受控环境下采集的。现有的方法在野外环境下对3D人脸的估计是不稳定的，会因同一主题的不同照片而发生变化，要么是过拟合，要么是过于通用（平均脸）。本文直接对输入图片处理，通过CNN回归3DMM的形状和纹理参数。<strong>本文通过提供一种生成大量标记示例的方法来克服所需的训练数据不足的问题</strong>。本文方法在<strong>MICC数据集</strong>实现SOTA效果，同时在人脸识别效果上也有成效，本文在人脸识别上是使用3D人脸形状作为表示，而不是其他系统使用的不透明深度特征向量。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -507,92 +497,6 @@ int main()
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/IMG_0045.jpg">
-      <meta itemprop="name" content="XS">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FleetingSmile Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | FleetingSmile Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/" class="post-title-link" itemprop="url">论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2022-09-24 00:00:00 / 修改时间：15:47:25" itemprop="dateCreated datePublished" datetime="2022-09-24T00:00:00+08:00">2022-09-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Face-Recon/" itemprop="url" rel="index"><span itemprop="name">Face Recon</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><em><strong>摘要</strong></em></h2><p>​    人脸的3维形状是易于区分的，但尽管如此，3维人脸仍很少用于人脸识别以及3维人脸数据经常是在受控环境下采集的。现有的方法在野外环境下对3D人脸的估计是不稳定的，会因同一主题的不同照片而发生变化，要么是过拟合，要么是过于通用（平均脸）。本文直接对输入图片处理，通过CNN回归3DMM的形状和纹理参数。<strong>本文通过提供一种生成大量标记示例的方法来克服所需的训练数据不足的问题</strong>。本文方法在<strong>MICC数据集</strong>实现SOTA效果，同时在人脸识别效果上也有成效，本文在人脸识别上是使用3D人脸形状作为表示，而不是其他系统使用的不透明深度特征向量。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
