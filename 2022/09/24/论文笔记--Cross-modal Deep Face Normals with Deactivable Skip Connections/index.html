@@ -19,20 +19,18 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"the-fleetinglove.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="摘要 ​ 当下单目重建多采用数据驱动的策略，但是受限于真实标签数据的缺乏，导致这种方法很困难。本文提出一种跨模态网络架构，可以利用所有图像和法线数据（无论是否配对），通过encoder和decoder的跳跃连接实现面部细节在图像和法线维度上进行传递。本文方法的核心就是一个融合deactivable skip connection的模块，该方法通过相同的端到端架构集成了自动编码和图像到法线转">
+    <meta name="description" content="摘要 当下单目重建多采用数据驱动的策略，但是受限于真实标签数据的缺乏，导致这种方法很困难。本文提出一种跨模态网络架构，可以利用所有图像和法线数据（无论是否配对），通过encoder和decoder的跳跃连接实现面部细节在图像和法线维度上进行传递。本文方法的核心就是一个融合deactivable skip connection的模块，该方法通过相同的端到端架构集成了自动编码和图像到法线转换的功">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections***">
 <meta property="og:url" content="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/index.html">
 <meta property="og:site_name" content="Starry Light">
-<meta property="og:description" content="摘要 ​ 当下单目重建多采用数据驱动的策略，但是受限于真实标签数据的缺乏，导致这种方法很困难。本文提出一种跨模态网络架构，可以利用所有图像和法线数据（无论是否配对），通过encoder和decoder的跳跃连接实现面部细节在图像和法线维度上进行传递。本文方法的核心就是一个融合deactivable skip connection的模块，该方法通过相同的端到端架构集成了自动编码和图像到法线转">
+<meta property="og:description" content="摘要 当下单目重建多采用数据驱动的策略，但是受限于真实标签数据的缺乏，导致这种方法很困难。本文提出一种跨模态网络架构，可以利用所有图像和法线数据（无论是否配对），通过encoder和decoder的跳跃连接实现面部细节在图像和法线维度上进行传递。本文方法的核心就是一个融合deactivable skip connection的模块，该方法通过相同的端到端架构集成了自动编码和图像到法线转换的功">
 <meta property="og:locale">
 <meta property="og:image" content="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143501613.png">
+<meta property="og:image" content="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/image-20220707185938605.png">
 <meta property="og:image" content="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143717592.png">
-<meta property="og:image" content="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/论文笔记--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections.assets/image-20220708143803733.png">
-<meta property="og:image" content="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/论文笔记--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections.assets/image-20220708144012178.png">
-<meta property="og:image" content="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/论文笔记--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections.assets/image-20220708143915072.png">
 <meta property="article:published_time" content="2022-09-23T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-09-24T08:51:06.587Z">
+<meta property="article:modified_time" content="2022-09-24T16:17:33.799Z">
 <meta property="article:author" content="ZJU_XS">
 <meta property="article:tag" content="Face Reconstruction">
 <meta name="twitter:card" content="summary">
@@ -122,7 +120,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%A1%E7%8C%AE"><span class="nav-number">2.</span> <span class="nav-text">贡献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#deactivable-skip-connection"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">deactivable skip connection：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#loss-function"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">loss function：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C"><span class="nav-number">4.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">问题</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%A1%E7%8C%AE"><span class="nav-number">2.</span> <span class="nav-text">贡献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#deactivable-skip-connection"><span class="nav-number">3.1.</span> <span class="nav-text">deactivable skip connection：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loss-function"><span class="nav-number">3.2.</span> <span class="nav-text">loss function：</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -223,9 +221,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-09-24 00:00:00 / 修改时间：16:51:06" itemprop="dateCreated datePublished" datetime="2022-09-24T00:00:00+08:00">2022-09-24</time>
+      <time title="创建时间：2022-09-24 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-24T00:00:00+08:00">2022-09-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-09-25 00:17:33" itemprop="dateModified" datetime="2022-09-25T00:17:33+08:00">2022-09-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -248,8 +252,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="摘要">摘要</h2>
-<p>​
-当下单目重建多采用数据驱动的策略，但是受限于真实标签数据的缺乏，导致这种方法很困难。本文提出一种跨模态网络架构，可以利用所有图像和法线数据（无论是否配对），通过encoder和decoder的跳跃连接实现面部细节在图像和法线维度上进行传递。本文方法的核心就是一个融合deactivable
+<p>当下单目重建多采用数据驱动的策略，但是受限于真实标签数据的缺乏，导致这种方法很困难。本文提出一种跨模态网络架构，可以利用所有图像和法线数据（无论是否配对），通过encoder和decoder的跳跃连接实现面部细节在图像和法线维度上进行传递。本文方法的核心就是一个融合deactivable
 skip
 connection的模块，该方法通过相同的端到端架构集成了自动编码和图像到法线转换的功能。
 <span id="more"></span></p>
@@ -260,43 +263,21 @@ connection的模块，该方法通过相同的端到端架构集成了自动编�
 <li>SOTA效果</li>
 </ul>
 <h2 id="方法">方法</h2>
-<p><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143501613.png" alt="image-20220708143501613" style="zoom:50%;" /></p>
-<p>​ 该架构允许利用成对或非成对的图像/法线数据进行图像到法线的转换（<span
-class="math inline">\(I\)</span>-&gt;<span
-class="math inline">\(\hat{N}\)</span>），在训练期间通过图像到图像（<span
-class="math inline">\(I\)</span>-&gt;<span
-class="math inline">\(\hat{I}\)</span>）和法线到法线（<span
-class="math inline">\(N\)</span>-&gt;<span
-class="math inline">\(\hat{N}\)</span>）的转换过程进行正则化。<span
-class="math inline">\(E_I\)</span>到<span
-class="math inline">\(D_N\)</span>的跳跃连接可以传递面部细节信息。</p>
-<h5 id="deactivable-skip-connection">deactivable skip connection：</h5>
+<p><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143501613.png" alt="image-20220708143501613" style="zoom:50%;"></p>
+<p>该架构允许利用成对或非成对的图像/法线数据进行图像到法线的转换（<span class="math inline">\(I\)</span>-&gt;<span class="math inline">\(\hat{N}\)</span>），在训练期间通过图像到图像（<span class="math inline">\(I\)</span>-&gt;<span class="math inline">\(\hat{I}\)</span>）和法线到法线（<span class="math inline">\(N\)</span>-&gt;<span class="math inline">\(\hat{N}\)</span>）的转换过程进行正则化。<span class="math inline">\(E_I\)</span>到<span class="math inline">\(D_N\)</span>的跳跃连接可以传递面部细节信息。</p>
+<h3 id="deactivable-skip-connection">deactivable skip connection：</h3>
 <figure>
-<img
-src="论文笔记--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections.assets/image-20220707185938605.png"
-alt="image-20220707185938605" />
+<img src="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/image-20220707185938605.png" alt="image-20220707185938605">
 <figcaption aria-hidden="true">image-20220707185938605</figcaption>
 </figure>
 <p>在特征图从encoder到decoder传递过程中，这个skip
 connection可以选择开启或关闭。</p>
-<p>在进行 normal-&gt;normal (<span
-class="math inline">\(E_N\)</span>-&gt;<span
-class="math inline">\(D_N\)</span>) 传递过程中，<span
-class="math inline">\(D_N\)</span>的每一层输出<span
-class="math inline">\(F_{D}^{n-i}=f(F_{D}^{n-i-1})\)</span></p>
-<p>在进行 image-&gt;normal（<span
-class="math inline">\(E_I\)</span>-&gt;<span
-class="math inline">\(D_N\)</span>）传递过程中，<span
-class="math inline">\(D_N\)</span>的每一层输出<span
-class="math inline">\(F_{D}^{n-i}\)</span>是由 前一层输出的<span
-class="math inline">\(f(F_{D}^{n-i-1})\)</span>上和<span
-class="math inline">\(F_E^i\)</span>同样通道数量的特征图，与<span
-class="math inline">\(F_E^i\)</span>特征图进行element-wise
-max操作，得到新的特征图后和剩余通道数量的<span
-class="math inline">\(f(F_{D}^{n-i-1})\)</span>特征图进行相加得到。</p>
+<p>在进行 normal-&gt;normal (<span class="math inline">\(E_N\)</span>-&gt;<span class="math inline">\(D_N\)</span>) 传递过程中，<span class="math inline">\(D_N\)</span>的每一层输出<span class="math inline">\(F_{D}^{n-i}=f(F_{D}^{n-i-1})\)</span></p>
+<p>在进行 image-&gt;normal（<span class="math inline">\(E_I\)</span>-&gt;<span class="math inline">\(D_N\)</span>）传递过程中，<span class="math inline">\(D_N\)</span>的每一层输出<span class="math inline">\(F_{D}^{n-i}\)</span>是由 前一层输出的<span class="math inline">\(f(F_{D}^{n-i-1})\)</span>上和<span class="math inline">\(F_E^i\)</span>同样通道数量的特征图，与<span class="math inline">\(F_E^i\)</span>特征图进行element-wise
+max操作，得到新的特征图后和剩余通道数量的<span class="math inline">\(f(F_{D}^{n-i-1})\)</span>特征图进行相加得到。</p>
 <p>这样做允许在不发生传输操作时将信息从编码器传输到解码器，而不会降低性能，就像自编码器正常工作时一样。</p>
-<h5 id="loss-function">loss function：</h5>
-<p><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143717592.png" alt="image-20220708143717592" style="zoom: 80%;" /></p>
+<h3 id="loss-function">loss function：</h3>
+<p><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143717592.png" alt="image-20220708143717592" style="zoom: 80%;"></p>
 <p>训练过程只能对一个模态进行输入，要么是法线图要么是原图。</p>
 <ul>
 <li>当有原图输入，同时也有图片和法线图的ground truth时，先进行normal to
@@ -305,14 +286,6 @@ image。上述的两个loss值进行同样比重求和得到最终loss。</li>
 <li>当只有images或者只有normals时，就只进行image to image或者normal to
 normal的传输过程。</li>
 </ul>
-<h2 id="效果">效果</h2>
-<p><img src="论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections.assets/image-20220708143803733.png" alt="image-20220708143803733" style="zoom:50%;" /></p>
-<p><img src="论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections.assets/image-20220708144012178.png" alt="image-20220708144012178" style="zoom:67%;" /></p>
-<p><img src="论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections.assets/image-20220708143915072.png" alt="image-20220708143915072" style="zoom:67%;" /></p>
-<h2 id="问题">问题</h2>
-<p>跳跃连接为什么只用在<span class="math inline">\(E_I\)</span>到<span
-class="math inline">\(D_N\)</span>的过程，其他传输过程为什么不用跳跃连接</p>
-<p>论文验证有列出3维人脸模型的重构效果，具体是怎么生成这个3维人脸的，method没有涉及这块，可能在验证实验部分有说。</p>
 
     </div>
 
@@ -329,13 +302,13 @@ class="math inline">\(D_N\)</span>的过程，其他传输过程为什么不用�
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/" rel="prev" title="论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network">
-                  <i class="fa fa-chevron-left"></i> 论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network
+                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--To%20Fit%20or%20Not%20to%20Fit%20Model-based%20Face%20Reconstruction%20and%20Occlusion%20Segmentation%20from%20Weak%20Supervision/" rel="prev" title="论文笔记--To Fit or Not to Fit Model-based Face Reconstruction and Occlusion Segmentation from Weak Supervision">
+                  <i class="fa fa-chevron-left"></i> 论文笔记--To Fit or Not to Fit Model-based Face Reconstruction and Occlusion Segmentation from Weak Supervision
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Accurate%203D%20Face%20Reconstruction%20with%20Weakly-Supervised%20LearningFrom%20Single%20Image%20to%20Image%20Set/" rel="next" title="论文笔记--Accurate 3D Face Reconstruction with Weakly-Supervised Learning:From Single Image to Image Set">
-                  论文笔记--Accurate 3D Face Reconstruction with Weakly-Supervised Learning:From Single Image to Image Set <i class="fa fa-chevron-right"></i>
+                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/" rel="next" title="论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network">
+                  论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -386,7 +359,7 @@ class="math inline">\(D_N\)</span>的过程，其他传输过程为什么不用�
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
