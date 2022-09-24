@@ -259,10 +259,10 @@
 
 
 
-<p>​      该架构允许利用成对或非成对的图像/法线数据进行图像到法线的转换（$I$-&gt;$\hat{N}$），在训练期间通过图像到图像（$I$-&gt;$\hat{I}$）和法线到法线（$N$-&gt;$\hat{N}$）的转换过程进行正则化。$E_I$到$D_N$的跳跃连接可以传递面部细节信息。</p>
-<h5 id="deactivable-skip-connection："><a href="#deactivable-skip-connection：" class="headerlink" title="deactivable skip connection："></a>deactivable skip connection：</h5><p>![image-20220707185938605](论文笔记–Cross-modal Deep Face Normals with Deactivable Skip Connections.assets/image-20220707185938605.png)</p>
+<p>​      该架构允许利用成对或非成对的图像&#x2F;法线数据进行图像到法线的转换（$I$-&gt;$\hat{N}$），在训练期间通过图像到图像（$I$-&gt;$\hat{I}$）和法线到法线（$N$-&gt;$\hat{N}$）的转换过程进行正则化。$E_I$到$D_N$的跳跃连接可以传递面部细节信息。</p>
+<h5 id="deactivable-skip-connection："><a href="#deactivable-skip-connection：" class="headerlink" title="deactivable skip connection："></a>deactivable skip connection：</h5><p>![image-20220707185938605](论文笔记–Cross-modal Deep Face Normals with Deactivable Skip Connections.assets&#x2F;image-20220707185938605.png)</p>
 <p>在特征图从encoder到decoder传递过程中，这个skip connection可以选择开启或关闭。</p>
-<p>在进行 normal-&gt;normal ($E_N$-&gt;$D_N$) 传递过程中，$D_N$的每一层输出$F_{D}^{n-i}=f(F_{D}^{n-i-1})$</p>
+<p>在进行 normal-&gt;normal ($E_N$-&gt;$D_N$) 传递过程中，$D_N$的每一层输出$F_{D}^{n-i}&#x3D;f(F_{D}^{n-i-1})$</p>
 <p>在进行 image-&gt;normal（$E_I$-&gt;$D_N$）传递过程中，$D_N$的每一层输出$F_{D}^{n-i}$是由  前一层输出的$f(F_{D}^{n-i-1})$上和$F_E^i$同样通道数量的特征图，与$F_E^i$特征图进行element-wise max操作，得到新的特征图后和剩余通道数量的$f(F_{D}^{n-i-1})$特征图进行相加得到。</p>
 <p>这样做允许在不发生传输操作时将信息从编码器传输到解码器，而不会降低性能，就像自编码器正常工作时一样。</p>
 <h5 id="loss-function："><a href="#loss-function：" class="headerlink" title="loss function："></a>loss function：</h5><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143717592.png" alt="image-20220708143717592" style="zoom: 80%;" />

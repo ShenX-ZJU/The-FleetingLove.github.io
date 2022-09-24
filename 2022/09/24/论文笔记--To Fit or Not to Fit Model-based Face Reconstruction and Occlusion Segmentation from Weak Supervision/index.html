@@ -254,15 +254,15 @@
 <p>​       训练过程遵循EM算法的核心思想，通过在给定当前分割掩码估计的情况下训练面部自编码器和随后基于当前 3D 面部重建训练分割网络之间交替进行。分割网络的无监督训练是通过在估计的遮挡掩码下正则化和保留目标图像和重建图像之间的相似性来实现的，通过引入了几个损失来实现这一点。设计的模型在三份数据集进行验证，分别是<strong>CelebA-HQ, AR, NoW challenge</strong>。</p>
 <p>​        总之，我们在本文中做出了以下贡献：</p>
 <ol>
-<li> 实现一种基于模型的 3D 人脸重建方法，该方法具有高度鲁棒的遮挡，无需任何人工遮挡注释。</li>
-<li> 设计的模型在遮挡下的 3D 人脸重建中实现了SOTA，并在野外图像上提供了面部遮挡掩码的准确估计。</li>
+<li>实现一种基于模型的 3D 人脸重建方法，该方法具有高度鲁棒的遮挡，无需任何人工遮挡注释。</li>
+<li>设计的模型在遮挡下的 3D 人脸重建中实现了SOTA，并在野外图像上提供了面部遮挡掩码的准确估计。</li>
 </ol>
 <h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a><strong>方法</strong></h2><p>​        本文的目标是由严重遮挡的单一图片重建出鲁棒的3D人脸。为解决该问题，本文将基于模型的人脸自动编码器 𝑅 与分割网络 𝑆 集成在一起，并在它们之间产生协同作用。分割掩码在模型拟合期间消除遮挡的估计，使重建网络对遮挡具有鲁棒性。重建的结果给分割网络提供了参考，促使分割网络的准确性提升。</p>
 <p><img src="https://gitee.com/Forever_XS/markdown_paper_picture/raw/master/blog_casia/image-20220509144350144.png" alt="image-20220509144350144"></p>
 <p>​        </p>
 <h5 id="Training-the-segmentation-network"><a href="#Training-the-segmentation-network" class="headerlink" title="Training the segmentation network"></a>Training the segmentation network</h5><p>​        在训练分割网络时，人脸自编码器的参数是固定的，只优化分割网络。我们没有寻找标记数据，而是提出了四种损失来增强图像之间的内在相似性。 每个损失都可以包括指示面部或相反的像素。损失在感知级别或像素级别上起作用，以充分利用视觉线索。分割网络训练时的四种损失如下：</p>
 <p><img src="https://gitee.com/Forever_XS/markdown_paper_picture/raw/master/blog_casia/image-20220509151017598.png" alt="image-20220509151017598"></p>
-<p>​          除了上述四种损失外，还添加正则化项损失$L_{bin}=-\sum_x(M(x)-0.5)^2$来鼓励面部掩码是二值化分布（0或1）。总体损失函数式如下，其中$\eta_1=15\quad\eta_2=3\quad\eta_3=0.5\quad\eta_4=2.5\quad\eta_5=10$<br>$$<br>L_S=\eta_1L_{neighbor}+\eta_2L_{dist}+\eta_3L_{area}+\eta_4L_{presv}+\eta_5L_{bin}<br>$$</p>
+<p>​          除了上述四种损失外，还添加正则化项损失$L_{bin}&#x3D;-\sum_x(M(x)-0.5)^2$来鼓励面部掩码是二值化分布（0或1）。总体损失函数式如下，其中$\eta_1&#x3D;15\quad\eta_2&#x3D;3\quad\eta_3&#x3D;0.5\quad\eta_4&#x3D;2.5\quad\eta_5&#x3D;10$<br>$$<br>L_S&#x3D;\eta_1L_{neighbor}+\eta_2L_{dist}+\eta_3L_{area}+\eta_4L_{presv}+\eta_5L_{bin}<br>$$</p>
 <h5 id="Training-the-face-autoencoder"><a href="#Training-the-face-autoencoder" class="headerlink" title="Training the face autoencoder"></a>Training the face autoencoder</h5><p>​          训练面部自编码器网络时，冻结分割网络参数。训练损失函数如下：</p>
 <img src="https://gitee.com/Forever_XS/markdown_paper_picture/raw/master/blog_casia/image-20220509155639300.png" alt="image-20220509155639300" style="zoom: 67%;" />
 
