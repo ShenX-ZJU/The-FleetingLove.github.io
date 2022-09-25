@@ -2852,17 +2852,17 @@ body {
   line-height: 2;
 }
 .content-wrap {
-  opacity: 0.6;
+  opacity: 0.7;
 }
 .main-inner {
-  opacity: 0.85;
+  opacity: 0.9;
 }
 .sidebar {
-  opacity: 0.9;
+  opacity: 0.83;
 }
 .header-inner {
   background: rgba(255,255,255,0.7);
 }
 .popup {
-  opacity: 0.9;
+  opacity: 1;
 }
