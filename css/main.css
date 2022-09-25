@@ -2743,3 +2743,18 @@ body {
   font-size: 1em;
   line-height: 2;
 }
+.content-wrap {
+  opacity: 0.6;
+}
+.main-inner {
+  opacity: 0.85;
+}
+.sidebar {
+  opacity: 0.9;
+}
+.header-inner {
+  background: rgba(255,255,255,0.7);
+}
+.popup {
+  opacity: 0.9;
+}
