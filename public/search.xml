@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>综述笔记--Review Face Reconstruction</title>
+      <link href="/2022/09/24/ReviewFaceRecon/"/>
+      <url>/2022/09/24/ReviewFaceRecon/</url>
+      
+        <content type="html"><![CDATA[<h2 id="简介">简介</h2><p>传统3D人脸重建方法，大多是立足于图像信息，如基于图像亮度、边缘信息、线性透视、颜色、相对高度、视差等等一种或多种信息建模技术进行3D人脸重建。这方面的技术论文，无论国内外都相当多，也较杂乱，一时间个人也不好具体统计，总之其中也是有很多不错的思想和方法的，当然这也不是本文重点内容。基于模型的3D人脸重建方法，是目前较为流行的3D人脸重建方法；3D模型主要用三角网格或点云来表示，现下流行的模型有通用人脸模型(CANDIDE-3)和三维变形模型(3DMM)及其变种模型，基于它们的3D人脸重建算法既有传统算法也有深度学习算法。端到端3D人脸重建方法，是近年新起的方法；它们绕开了人脸模型，设计自己的3D人脸表示方法，采用CNN结构进行直接回归，端到端地重建3D人脸。<span id="more"></span></p><h2 id="d可形变模型3d-morphable-model">3D可形变模型(3D MorphableModel)</h2><p>可形变模型（MorphableModel）这一名词来源于计算机图形学中一个名叫Morphing技术的图像生成算法。Morphing技术主要思想：如果两幅图像中存在一定的对应关系，那么就可以利用这个对应关系生成具一副有平滑过渡效果的图像。3DMM，即三维可变形人脸模型，是一个通用的三维人脸模型，用固定的点数来表示人脸。它的核心思想就是人脸可以在三维空间中进行一一匹配，并且可以由其他许多幅人脸正交基加权线性相加而来。（线性模型）</p><h2 id="代码测试">代码测试</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> x = <span class="number">666</span>;</span><br><span class="line">    cout &lt;&lt; x &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Face Recon </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Paper Review </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections</title>
+      <link href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/"/>
+      <url>/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/</url>
+      
+        <content type="html"><![CDATA[<h2 id="摘要">摘要</h2><p>当下单目重建多采用数据驱动的策略，但是受限于真实标签数据的缺乏，导致这种方法很困难。本文提出一种跨模态网络架构，可以利用所有图像和法线数据（无论是否配对），通过encoder和decoder的跳跃连接实现面部细节在图像和法线维度上进行传递。本文方法的核心就是一个融合deactivableskipconnection的模块，该方法通过相同的端到端架构集成了自动编码和图像到法线转换的功能。<span id="more"></span></p><h2 id="贡献">贡献</h2><ul><li>一种可以利用跨模态学习从单张人脸图像估计法线的框架；</li><li>可停用的跳跃连接架构模式（deactivable skip connection）</li><li>SOTA效果</li></ul><h2 id="方法">方法</h2><p><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143501613.png" alt="image-20220708143501613" style="zoom:50%;"></p><p>该架构允许利用成对或非成对的图像/法线数据进行图像到法线的转换（<span class="math inline">\(I\)</span>-&gt;<span class="math inline">\(\hat{N}\)</span>），在训练期间通过图像到图像（<span class="math inline">\(I\)</span>-&gt;<span class="math inline">\(\hat{I}\)</span>）和法线到法线（<span class="math inline">\(N\)</span>-&gt;<span class="math inline">\(\hat{N}\)</span>）的转换过程进行正则化。<span class="math inline">\(E_I\)</span>到<span class="math inline">\(D_N\)</span>的跳跃连接可以传递面部细节信息。</p><h3 id="deactivable-skip-connection">deactivable skip connection：</h3><figure><img src="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/image-20220707185938605.png" alt="image-20220707185938605"><figcaption aria-hidden="true">image-20220707185938605</figcaption></figure><p>在特征图从encoder到decoder传递过程中，这个skipconnection可以选择开启或关闭。</p><p>在进行 normal-&gt;normal (<span class="math inline">\(E_N\)</span>-&gt;<span class="math inline">\(D_N\)</span>) 传递过程中，<span class="math inline">\(D_N\)</span>的每一层输出<span class="math inline">\(F_{D}^{n-i}=f(F_{D}^{n-i-1})\)</span></p><p>在进行 image-&gt;normal（<span class="math inline">\(E_I\)</span>-&gt;<span class="math inline">\(D_N\)</span>）传递过程中，<span class="math inline">\(D_N\)</span>的每一层输出<span class="math inline">\(F_{D}^{n-i}\)</span>是由 前一层输出的<span class="math inline">\(f(F_{D}^{n-i-1})\)</span>上和<span class="math inline">\(F_E^i\)</span>同样通道数量的特征图，与<span class="math inline">\(F_E^i\)</span>特征图进行element-wisemax操作，得到新的特征图后和剩余通道数量的<span class="math inline">\(f(F_{D}^{n-i-1})\)</span>特征图进行相加得到。</p><p>这样做允许在不发生传输操作时将信息从编码器传输到解码器，而不会降低性能，就像自编码器正常工作时一样。</p><h3 id="loss-function">loss function：</h3><p><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143717592.png" alt="image-20220708143717592" style="zoom: 80%;"></p><p>训练过程只能对一个模态进行输入，要么是法线图要么是原图。</p><ul><li>当有原图输入，同时也有图片和法线图的ground truth时，先进行normal tonormal，再进行 image to normal，最后进行image toimage。上述的两个loss值进行同样比重求和得到最终loss。</li><li>当只有images或者只有normals时，就只进行image to image或者normal tonormal的传输过程。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Face Recon </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Face Reconstruction </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>论文笔记--Accurate 3D Face Reconstruction with Weakly-Supervised Learning:From Single Image to Image Set</title>
+      <link href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Accurate%203D%20Face%20Reconstruction%20with%20Weakly-Supervised%20LearningFrom%20Single%20Image%20to%20Image%20Set/"/>
+      <url>/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Accurate%203D%20Face%20Reconstruction%20with%20Weakly-Supervised%20LearningFrom%20Single%20Image%20to%20Image%20Set/</url>
+      
+        <content type="html"><![CDATA[<h2 id="摘要"><strong>摘要</strong></h2><p>​  最近，基于深度学习的3D人脸重建方法在质量和效率上都显现出可喜的成果。然而，深度神经网络的训练通常需要大量的数据，而具有真实3D人脸形状标签的人脸图像却很少。该文章提出一种深度3D人脸重建方法：</p><span id="more"></span><ol type="1"><li><p><strong>利用一个稳健的混合损失函数进行弱监督学习，该函数同时考虑了image-level 和 perception-level 的鲁棒性</strong></p><p><strong>（image-level损失指的是重建的人脸模型渲染得到的图片和输入图片的像素值应尽可能一致；perception-level损失指的是重建的人脸模型渲染得到的图片和输入图片的内在特征应尽可能一致）</strong></p></li><li><p><strong>利用不同图像的互补信息进行形状聚合，进行多图像人脸重建。</strong></p></li></ol><p>​  文章提出的方法快速，准确且对遮挡和大姿态的图像具有鲁棒性。该文章在MICCFlorence 和Facewarehouse数据集上进行实验论证，同时系统地与最近几年的15种方法进行对比，实验结果证明本文提出的方法展现出了目前最先进的性能。</p><p>​  Code (Pytorch):https://github.com/sicxu/Deep3DFaceRecon_pytorch</p><h2 id="介绍"><strong>介绍</strong></h2><p>​  从非受限场景下的2D图像中忠实地恢复人脸的3D形状是一项具有挑战性的任务，并且具有许多应用，例如人脸识别，面部媒体操控，人脸动画等。最近，人们对使用CNN来实现单个图像重建3D人脸的兴趣激增，以代替使用复杂且要大量优化的传统方法。由于真实的3D人脸数据稀少，以往许多方法都使用合成数据或者使用传统方法拟合的3D形状作为替代形状标签，但是这种做法会受到域差距和不准确的训练标签影响。</p><p>​  无监督学习的关键是一个可微的图像形成过程，它使用网络预测来渲染人脸图像，监督信号源于输入图像和渲染对应物之间的差异。该问题提出了混合级损失函数和一种新颖的基于肤色的光度误差注意策略，该方法对人脸遮挡问题有一定解决。该文章也在重点研究同一目标多图像的人脸重建问题。</p><p>​  该文章训练一个辅助网络。借助该网络回归得到承载身份的3D模型系数的置信度，并通过基于置信度的聚合获得最终的身份系数。它可以利用位姿差异更好地融合互补信息，学习更准确的3D形状。</p><p>​  该文章的主要两项贡献是：</p><ol type="1"><li><strong>提出一种基于 CNN的单图像人脸重建方法，该方法利用混合级图像信息进行弱监督学习。改进的损失函数包括图像级损失和感知级损失。使用低维3DMM 子空间，仍然能够胜过具有“无限制”3D 表示的现有技术。</strong></li><li><strong>提出一种用于多图像人脸重建聚合的新型形状置信度学习方法。置信预测子网也以弱监督方式进行训练，方法明显优于朴素聚合（例如形状平均）。</strong></li></ol><h2 id="方法"><strong>方法</strong></h2><h3 id="整体架构"><strong>整体架构</strong></h3><figure><img src="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Accurate%203D%20Face%20Reconstruction%20with%20Weakly-Supervised%20LearningFrom%20Single%20Image%20to%20Image%20Set/full_process.png" alt="框架流程"><figcaption aria-hidden="true">框架流程</figcaption></figure><h3 id="模型理念"><strong>模型理念</strong></h3><p>​<strong>3D face model</strong>：使用一个CNN对输入图像处理，得到<span class="math inline">\({\alpha}, {\beta}, {\delta}, {p},{\gamma}\)</span>等参数，<span class="math inline">\({\alpha}\in{R}^{80},{\beta}\in{R}^{64},{\delta}\in{R}^{80}\)</span>。表达式如下所示，最终模型包括36k个顶点：</p><p><span class="math display">\[S=S(\alpha,\beta)=\bar{S}+B_{id}\alpha+B_{exp}\beta\\T=T(\delta)=\bar{T}+B_t\delta\]</span></p><p>​<span class="math inline">\({S},{T}\)</span>分别表示平均脸的形状和纹理参数，<span class="math inline">\(B_{id}, {B_{exp}},{B_t}\)</span>分别是身份，表情和纹理的PCA基（都经过标准偏差归一化处理）；使用<strong>BFM</strong>预测<span class="math inline">\(\bar{S},B_{id},\bar{T},B_t\)</span>，使用<strong>FaceWarehouse</strong>预测<span class="math inline">\(B{exp}\)</span>。</p><p>​<strong>IlluminationModel</strong>：假设人脸是Lambertian平面，使用球谐函数SH估计场景光照。法向是<span class="math inline">\(n_i\)</span>，皮肤纹理是<span class="math inline">\(t_i\)</span>的顶点<span class="math inline">\(s_i\)</span>辐射度为下式，其中<span class="math inline">\({\phi_b}:R^3\rightarrow{R}\)</span>是SH基函数，<span class="math inline">\(\gamma_b\)</span>是对应的SH系数，<span class="math inline">\(\gamma\in{R}^9\)</span>，<span class="math inline">\(B=3\)</span> <span class="math display">\[C(n_i,t_i|\gamma)=t_i·{\sum}_{b=1}^{B^2}{\gamma_b}{\phi_b}(n_i)\]</span>​ <strong>Camera Model</strong>：透视投影，3D人脸姿态<span class="math inline">\(p\)</span>由旋转<span class="math inline">\(R\in{SO(3)}\)</span>和平移<span class="math inline">\(t\in{R^3}\)</span>表示。</p><p>​<strong>Summary</strong>：最终预测的向量结果<span class="math inline">\(x=(\alpha,\beta,\delta,\gamma,{p})\in{R^{239}}\)</span>，（备注：80+64+80+9+6=239）利用ResNet50来回归预测这239个参数，将ResNet50的最后一层全连接输出改为239，该网络称为R-Net。</p><h3 id="单张图片人脸重建"><strong>单张图片人脸重建</strong></h3><p>​  给定一张RGB图片<span class="math inline">\(I\)</span>，作者使用R-Net回归参数向量<span class="math inline">\(x\)</span>，根据得到的人脸模型可以渲染得到新的图片<span class="math inline">\(I&#39;\)</span>，训练时不需要任何真实标签，而是根据<span class="math inline">\(I&#39;\)</span>来计算损失。</p><h4 id="image-level-loss">Image-Level Loss</h4><h5 id="robust-photometric-loss">Robust Photometric Loss</h5><p>​  原始图片和重建图片之间的像素差异作为损失是直观的方法，本文基于此提出了一种鲁棒的、皮肤感知的图像损失：式子定义如下：</p><!-- $$\begin{matrix}L_{photo}(x)=\frac{\sum_{i\in{M} }A_i·||I_i-I'_i(x)||_2}{\sum_{i\in{M} }A_i}\\A_i=\{ {^{1,\quad{if\quad{P_i>0.5}}}_{P_i,\quad{otherwise} } }\end{matrix}$$ --><p><span class="math display">\[L_{photo}(x)=\frac{\sum_{i\in{M}}A_i·||I_i-I&#39;_i(x)||_2}{\sum_{i\in{M} }A_i}\\\]</span><span class="math display">\[A_i=\begin{cases}    1 &amp; P_i&gt;0.5\\    P_i &amp; otherwise\end{cases}\]</span> ​  其中<span class="math inline">\(i\)</span>表示像素索引；<span class="math inline">\(M\)</span>表示投影的人脸区域；<span class="math inline">\(||·||\)</span>表示<span class="math inline">\(l_2\)</span>距离；<span class="math inline">\(A\)</span>是一个基于皮肤颜色的attentionmask，借助在一个皮肤数据集训练好的贝叶斯分类器来预测每个像素<span class="math inline">\(i\)</span>上的皮肤颜色概率<span class="math inline">\(P_i\)</span> 。</p><h5 id="lamdmark-loss">Lamdmark Loss</h5><p>​  在训练中使用2D图片上的人脸关键点作为弱监督信息，利用sota的3D人脸对齐方法来检测训练图片的68个人脸坐标<span class="math inline">\(q_n\)</span>，将重建人脸的3D关键点投影到图像空间得到<span class="math inline">\(q&#39;_n\)</span>，计算两者的距离作为损失。<span class="math inline">\(w_n\)</span>是坐标点权重，经过实验发现在嘴巴内部和鼻子处的权重设为20，其他地方的权重设为1最合适，式子如下。</p><p><span class="math display">\[L_{lan}(x)=\frac{1}{N}{\sum}_{n=1}^{N}w_n||q_n-q&#39;_n(x)||^2\]</span></p><h4 id="perception-level-loss">Perception-Level Loss</h4><p><span class="math display">\[L_{per}(x)=1-\frac{\left&lt;f(I),f(I&#39;(x))\right&gt;}{||f(I)||·||f(I&#39;(x))||}\]</span></p><h4 id="正则化">正则化</h4><p>​  为防止人脸形状和纹理退化，使用3DMM系数的正则项：</p><p><span class="math display">\[L_{coef}(x)=w_{\alpha}||\alpha||^2+w_{\beta}||\beta||^2+w_{\gamma}||\gamma||^2\\w_\alpha=1.0 \quad w_\beta=0.8 \quad w_\gamma=1.7e-3\]</span></p><p>​  尽管BFM模型的面部纹理是使用特殊设备获得的，但仍有一些阴影（如环境光遮蔽），为此再添入一个正则项：</p><p><span class="math display">\[L_{tex}(x)=\sum_{c\in{r,g,b}}var(T_{c,R}(x))\]</span></p><h4 id="损失函数总结">损失函数总结</h4><p>​  损失函数的总式子如下，其中<span class="math inline">\(w_{photo}=1.9\quad w_{lan}=1.6e-3 \quad w_{per}=0.2 \quad w_{coef}=3e-4 \quadw_{tex}=5\)</span> <span class="math display">\[L(x)=w_{photo}L_{photo}(x)+w_{lan}L_{lan}(x)+w_{per}L_{per}(x)+w_{coef}L_{coef}(x)+w_{tex}L_{tex}(x)\]</span></p><h3 id="多张图片人脸重建"><strong>多张图片人脸重建</strong></h3><p>​  除了从单张人脸图片重建人脸，如何从一个人的多张脸部图片，去重建一个更加精确的人脸模型也是一个很有意义的问题。不同的图片可能采集自不同的姿态、光照等，能够互相提供补充信息，这样重建出来的人脸对于遮挡、不佳的光照等情况更加鲁棒。</p><figure><img src="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Accurate%203D%20Face%20Reconstruction%20with%20Weakly-Supervised%20LearningFrom%20Single%20Image%20to%20Image%20Set/multi_image.png" alt="多视图重建流程"><figcaption aria-hidden="true">多视图重建流程</figcaption></figure><p>​  作者从单张图片人脸重建的结果学习一个置信度(反映重建质量)，作者针对人脸形状参数<span class="math inline">\(\alpha\in{R^{80}}\)</span>生成一个反映置信度的向量<span class="math inline">\(c\in{R^{80}}\)</span>，图片集为<span class="math inline">\(I:=\{I^j|=j=1,...M\}\)</span>，最终的人脸形状参数为：</p><p><span class="math display">\[a_{aggr}=(\sum_{j}c^j\odot\alpha^j)\oslash(\sum_jc^j)\]</span><span class="math display">\[\odot和\oslash分别表示哈达玛积和商\]</span></p><p>​  作者提出C-Net来预测置信度<span class="math inline">\(c\)</span>，由于R-Net能够预测诸如人脸姿态、光照等高阶信息，很自然地想到将其特征图运用到C-Net中来，作者同时使用了R-Net的浅层和深层特征，如前图所示。为了训练C-Net，首先从一张图片<span class="math inline">\(I^j\)</span>得到人脸系数<span class="math inline">\(\hat{x}^j\)</span>，<span class="math inline">\(\hat{x}^j=(\alpha_{aggr},\beta^j,\delta^j,\gamma^j,p^j)\)</span>，然后生成重建图片<span class="math inline">\(I^{j&#39;}\)</span>，C-Net的损失函数如下所示，<span class="math inline">\(L(·)\)</span>是前面单张人脸图片重建的损失函数</p><p><span class="math display">\[\mathcal{L}(\{\hat{x}^j\}) = \frac{1}{M}\sum_{j=1}^{M}L(\hat{x}^j)\]</span></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Face Recon </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Face Reconstruction </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network</title>
+      <link href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/"/>
+      <url>/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/</url>
+      
+        <content type="html"><![CDATA[<h2 id="摘要"><strong><em>摘要</em></strong></h2><p>​人脸的3维形状是易于区分的，但尽管如此，3维人脸仍很少用于人脸识别以及3维人脸数据经常是在受控环境下采集的。现有的方法在野外环境下对3D人脸的估计是不稳定的，会因同一主题的不同照片而发生变化，要么是过拟合，要么是过于通用（平均脸）。本文直接对输入图片处理，通过CNN回归3DMM的形状和纹理参数。<strong>本文通过提供一种生成大量标记示例的方法来克服所需的训练数据不足的问题</strong>。本文方法在<strong>MICC数据集</strong>实现SOTA效果，同时在人脸识别效果上也有成效，本文在人脸识别上是使用3D人脸形状作为表示，而不是其他系统使用的不透明深度特征向量。<span id="more"></span></p><h2 id="介绍"><strong><em>介绍</em></strong></h2><p>​3D人脸形状是易于辨识的，因为每个人的人脸形状是不同的，且人脸形状不受光照和纹理等因素影响。目前没有关于在野外环境中成功使用单视图人脸形状估计来识别具有挑战性的无约束人脸的方法。</p><p><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220428131155413.png" alt="image-20220428131155413" style="zoom: 33%;"></p><h2 id="方法"><strong><em>方法</em></strong></h2><p>​本文借助深度卷积神经网络来实现单张图片输入，回归得到3DMM面部形状参数。训练这样的CNN需要大量的带有正确3D面部形状标签的无约束面部数据。作者认为，之前没有将CNN用在三维人脸建模方面，主要是因为从二维图像重建三维人脸模型，我们需要回归高维的形状参数，这就要求非常深的网络，而训练非常深的网络又需要大量的训练数据，已知的三维人脸模型的训练集非常少。针对这一问题，作者提出利用一个对象的多姿态人脸图片生成准确率相当高的三维人脸形状（Automated3D face reconstruction from multiple images using qualitymeasures），然后把生成的模型作为训练集；对于鲁棒性和区别性的人脸形状怎么解决呢？借鉴二维空间中的深度卷积神经网络模型，而且模型还是现成的~</p><p>​ 目前有三个主要现状认识：</p><ol type="1"><li><p>利用同一人脸的多辐图像可以得到精确的三维估计</p></li><li><p>正确的3D人脸形状的标签很少可以利用，而每个主体却是包含有多张照片的</p></li><li><p>深度神经网络能很好提取和区分人脸特征</p><p>方法概览：</p><figure><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220428131711825.png" alt="image-20220428131711825"><figcaption aria-hidden="true">image-20220428131711825</figcaption></figure></li></ol><h3 id="generating-training-data"><strong>Generating Trainingdata</strong></h3><p>​3DMM的表示采用的是BFM模型，模型数学含义表达式如公式(1)所示。其中<span class="math inline">\(\alpha\)</span>和<span class="math inline">\(\beta\)</span>分别表示形体和纹理参数，且都是99维的向量。<span class="math display">\[S^{&#39;}=\hat{s}+W_S\alpha{\quad}{\quad}T^{&#39;}=\hat{t}+W_T\beta\]</span> ​ 在中科院的CASIA WebFacedataset选定一张照片，利用CLNF做人脸检测，得到68个人脸关键点和该图片的置信度。将得到的关键点用来初始化估计人脸模型的姿态，该姿态用六个自由度表示，三个自由度是旋转角度，三个是位移。然后再优化3DMM的形状，纹理，姿态，光照和颜色，利用前人的方法解决定位误差。一旦损失函数收敛，就得到的形状参数和纹理参数，这就是单个图像得到的3DMM估计。</p><p>​一张图片的3DMM参数可以用公式(2)表示，N表示同一目标下所有视图数量，一个目标的一张视图的3DMM参数用<span class="math display">\[\gamma_i\]</span>表示，一个目标的3DMM参数用<span class="math inline">\(\gamma\)</span>表示，<span class="math inline">\(w_i\)</span>表示归一化后的置信度，如公式(3)所示。至此，每个CASIA数据集的目标对象都有一个合并好的3DMM参数向量<span class="math inline">\(\gamma\)</span>相关联。 <span class="math display">\[γ_i=[\alpha_i,\beta_i]\quad i\in1..N\quad(2)\]</span></p><p><span class="math display">\[{\gamma}={\sum}_{i=1}^{N}{w_i·\gamma_i}\quad{and}\quad{\sum}_{i=1}^{N}w_i=1\quad(3)\]</span></p><h3 id="learning-to-regress-pooled-3dmm">Learning to regress pooled3DMM</h3><p>​使用之前生成的数据用于训练一个函数式，理想情况下，同一主题的不同照片通过该函数式回归得到的3DMM特征向量是一致的。本文采用了ResNet101，并经过人脸识别数据集的预训练。本文将该网络的最后一层全连接层进行修改，使其输出198维的3DMM特征向量<span class="math inline">\(\gamma\)</span>。</p><p>​本文是将CNN在CASIA数据集上进行微调，标签真值是之前生成的3DMM估计；同一目标对象的不同视角的图片共用一个3DMM形状参数；本文还采用了16层的VGG-Face架构进行训练验证，其结果稍逊于ResNet101。</p><p>​3DMM向量属于多元高斯分布，均值在原点处，代表平均人脸。因此，在训练过程中采用标准的欧几里得损失会使得人脸模型太泛化，没有区别性。本文提出一种非对称欧拉损失，公式如下：其中<span class="math inline">\(\gamma\)</span>是标签值，<span class="math inline">\(\gamma_p\)</span>是预测值，<span class="math inline">\(\lambda_1\)</span>和<span class="math inline">\(\lambda_2\)</span>控制过度和不足的估计误差之间的平衡，<span class="math inline">\(\lambda_1\)</span>和<span class="math inline">\(\lambda_2\)</span>都等于1时就是传统的欧几里得损失。本文设定<span class="math inline">\(\lambda_1\)</span>的值为1，<span class="math inline">\(\lambda_2\)</span>的值为3，使模型更快摆脱欠拟合并且鼓励网络生成更真实的三维人脸模型。<span class="math display">\[\ell(\gamma_p,\gamma)=\lambda_1·\underbrace{||\gamma^+-\gamma_{max}||^{2}_{2}}_{over-estimate}+\lambda_2·\underbrace{||\gamma_{p}^{+}-\gamma_{max}||^{2}_{2}}_{under-estimate}\]</span></p><p><span class="math display">\[{\gamma}^{+}{\doteq}{abs(\gamma)}{\doteq}{sign(\gamma)}·{\gamma}{\quad}{\quad}{\gamma^{+}_{p}{\doteq}{sign(\gamma)·\gamma_p}}{\quad}{\quad}{\gamma_{max}{\doteq}{max(\gamma^+,\gamma_{p}^{+})}}\]</span></p><p>​ 训练参数设置：SGD，batch_size: 144，momentum: 0.9，l2 weight decay:0.0005，learning rate: 0.01</p><p>​3DMM参数直接通过CNN对输入图像回归得到，没有进行纹理渲染的优化，只为得到准确的形状。</p><h3 id="parameter-based-3d-3d-recognition">Parameter based 3D-3Drecognition</h3><p>​ 用余弦相似度来判断两个人脸三维模型是否相似，公式如下： <span class="math display">\[s(\gamma_1,\gamma_2)=\frac{\gamma_{p1}·\gamma_{p2}^T}{||\gamma_{p1}||·||\gamma_{p2}||}\]</span></p><h2 id="实验结果">实验结果</h2><p>评价指标：</p><figure><img src="C:/Users/Admin/AppData/Roaming/Typora/typora-user-images/image-20220428132309766.png" alt="image-20220428132309766"><figcaption aria-hidden="true">image-20220428132309766</figcaption></figure><p>重建实验效果及对比：</p><figure><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220428132703834.png" alt="image-20220428132703834"><figcaption aria-hidden="true">image-20220428132703834</figcaption></figure><p>野外数据重建效果：</p><p><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220428132730719.png" alt="image-20220428132730719" style="zoom: 67%;"></p><p><strong>END</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Face Recon </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Face Reconstruction </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>论文笔记--To Fit or Not to Fit Model-based Face Reconstruction and Occlusion Segmentation from Weak Supervision</title>
+      <link href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--To%20Fit%20or%20Not%20to%20Fit%20Model-based%20Face%20Reconstruction%20and%20Occlusion%20Segmentation%20from%20Weak%20Supervision/"/>
+      <url>/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--To%20Fit%20or%20Not%20to%20Fit%20Model-based%20Face%20Reconstruction%20and%20Occlusion%20Segmentation%20from%20Weak%20Supervision/</url>
+      
+        <content type="html"><![CDATA[<h2 id="摘要"><strong>摘要</strong></h2><p>​由于遮挡物的剧烈的可变性，遮挡下的人脸重建极具挑战性。目前最成功的方法是通过逆向渲染来拟合3D人脸模型，并假设遮挡物给定分割，以此避免拟合遮挡物。然而，训练一个遮挡分割模型需要大量的注释数据。在这项工作中，我们介绍了一种基于模型的3D人脸重建方法，该方法对遮挡具有高度鲁棒性，但不需要任何遮挡注释进行训练。在我们的方法中，我们利用了生成人脸模型只能合成人脸而不是遮挡物的事实。我们使用此属性来指导遮挡分割网络的决策过程并完成无监督训练。目<strong>前主要挑战是模型拟合和遮挡分割相互依赖，需要共同推理。</strong>CelebA-HQ、AR数据库和 Now Challenge的定性和定量实验表明，所提出的方法在遮挡下实现了最先进的 3D 人脸重建。此外，尽管在没有任何遮挡注释的情况下进行了训练，但分割网络仍能准确定位遮挡。</p><span id="more"></span><h2 id="介绍"><strong>介绍</strong></h2><p>​单目3D人脸重建旨在估计人脸的姿态、形状和反照率，以及场景的光照条件和相机参数。从单个图像中解决所有这些因素是一个不适定问题。面部自动编码器面临的一个主要挑战是在野外环境下模型的性能仍然受到诸如遮挡，极端照明和姿势等因素限制。遮挡导致的一个核心问题是人脸模型会拟合被遮挡的人脸区域，导致重建的人脸失真。因此，一个遮挡的鲁棒的3D人脸重建问题就是去决定一张图像中哪些像素是需要去拟合，哪些像素是不需要去拟合的。</p><p>​在本文的工作中，设计了一种基于模型的人脸重建方法，该方法具有高度的遮挡鲁棒性，不需要任何的人工遮挡注释。特别地，本文提出以一种合作的方式去训练一个面部自编码器和一个分割网络。分割网络决定人脸模型是否需要拟合某一像素的问题，以便人脸重建不受遮挡影响。分割网络采用无监督的方式去训练分割网络，利用了生成的人脸模型只能合成人脸而不能合成遮挡的事实。同时可以利用目标原始图像和渲染生成图像之间的差异作为监督信号来指导分割网络的训练。反过来，人脸重建网络通过使用来自分割网络的预测在拟合期间掩盖被遮挡的像素，从而对遮挡具有鲁棒性。这也导致了协同效应，遮挡分割引导面部自编码器拟合易于分类为面部区域的图像区域，改进的人脸拟合反过来又使得分割网络能够改进其预测。</p><p>​训练过程遵循EM算法的核心思想，通过在给定当前分割掩码估计的情况下训练面部自编码器和随后基于当前3D面部重建训练分割网络之间交替进行。分割网络的无监督训练是通过在估计的遮挡掩码下正则化和保留目标图像和重建图像之间的相似性来实现的，通过引入了几个损失来实现这一点。设计的模型在三份数据集进行验证，分别是<strong>CelebA-HQ,AR, NoW challenge</strong>。</p><p>​ 总之，我们在本文中做出了以下贡献：</p><ol type="1"><li>实现一种基于模型的 3D人脸重建方法，该方法具有高度鲁棒的遮挡，无需任何人工遮挡注释。</li><li>设计的模型在遮挡下的 3D人脸重建中实现了SOTA，并在野外图像上提供了面部遮挡掩码的准确估计。</li></ol><h2 id="方法"><strong>方法</strong></h2><p>​本文的目标是由严重遮挡的单一图片重建出鲁棒的3D人脸。为解决该问题，本文将基于模型的人脸自动编码器𝑅 与分割网络 𝑆集成在一起，并在它们之间产生协同作用。分割掩码在模型拟合期间消除遮挡的估计，使重建网络对遮挡具有鲁棒性。重建的结果给分割网络提供了参考，促使分割网络的准确性提升。</p><figure><img src="https://gitee.com/Forever_XS/markdown_paper_picture/raw/master/blog_casia/image-20220509144350144.png" alt="image-20220509144350144"><figcaption aria-hidden="true">image-20220509144350144</figcaption></figure><p>​</p><h5 id="training-the-segmentation-network">Training the segmentationnetwork</h5><p>​在训练分割网络时，人脸自编码器的参数是固定的，只优化分割网络。我们没有寻找标记数据，而是提出了四种损失来增强图像之间的内在相似性。每个损失都可以包括指示面部或相反的像素。损失在感知级别或像素级别上起作用，以充分利用视觉线索。分割网络训练时的四种损失如下：</p><figure><img src="https://gitee.com/Forever_XS/markdown_paper_picture/raw/master/blog_casia/image-20220509151017598.png" alt="image-20220509151017598"><figcaption aria-hidden="true">image-20220509151017598</figcaption></figure><p>​ 除了上述四种损失外，还添加正则化项损失<span class="math inline">\(L_{bin}=-\sum_x(M(x)-0.5)^2\)</span>来鼓励面部掩码是二值化分布（0或1）。总体损失函数式如下，其中<span class="math inline">\(\eta_1=15\quad\eta_2=3\quad\eta_3=0.5\quad\eta_4=2.5\quad\eta_5=10\)</span><span class="math display">\[L_S=\eta_1L_{neighbor}+\eta_2L_{dist}+\eta_3L_{area}+\eta_4L_{presv}+\eta_5L_{bin}\]</span></p><h5 id="training-the-face-autoencoder">Training the faceautoencoder</h5><p>​ 训练面部自编码器网络时，冻结分割网络参数。训练损失函数如下：</p><p><img src="https://gitee.com/Forever_XS/markdown_paper_picture/raw/master/blog_casia/image-20220509155639300.png" alt="image-20220509155639300" style="zoom: 67%;"></p><h5 id="unsupervised-initialization">Unsupervised Initialization</h5><p>​ 使用遮挡的鲁棒损失生成初级掩码：</p><figure><img src="https://gitee.com/Forever_XS/markdown_paper_picture/raw/master/blog_casia/image-20220509160342837.png" alt="image-20220509160342837"><figcaption aria-hidden="true">image-20220509160342837</figcaption></figure><h2 id="网络">网络</h2><p>​ encoder采用ResNet50，segmentation network采用UNet。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Face Recon </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Face Reconstruction </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello Hexo</title>
+      <link href="/2022/09/23/Hello%20Hexo/"/>
+      <url>/2022/09/23/Hello%20Hexo/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your veryfirst post. Check <a href="https://hexo.io/docs/">documentation</a> formore info. If you get any problems when using Hexo, you can find theanswer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> oryou can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><span id="more"></span><h2 id="quick-start">Quick Start</h2><h3 id="create-a-new-post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="run-server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="generate-static-files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="deploy-to-remote-sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Test </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
