@@ -1279,6 +1279,7 @@ header.header {
   border: 1px solid #eee;
   max-width: 120px;
   padding: 2px;
+  border-radius: 50%;
 }
 .site-author-name {
   color: var(--text-color);
@@ -2084,6 +2085,13 @@ header.header {
 .post-block:last-of-type .post-eof {
   display: none;
 }
+.post-copyright ul {
+  list-style: none;
+  padding: 0.5em 1em;
+  background: var(--card-bg-color);
+  border-left: 3px solid #ff2a2a;
+  margin: 1em 0 0;
+}
 .post-tags {
   margin-top: 40px;
   text-align: center;
@@ -2722,7 +2730,7 @@ mjx-container[display='true'] + br {
   }
 }
 body {
-  background: url("/images/background1.png");
+  background: url("/images/background2.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
