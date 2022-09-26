@@ -54,31 +54,6 @@
     
     
     <entry>
-      <title>论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections</title>
-      <link href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/"/>
-      <url>/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/</url>
-      
-        <content type="html"><![CDATA[<h2 id="摘要">摘要</h2><p>当下单目重建多采用数据驱动的策略，但是受限于真实标签数据的缺乏，导致这种方法很困难。本文提出一种跨模态网络架构，可以利用所有图像和法线数据（无论是否配对），通过encoder和decoder的跳跃连接实现面部细节在图像和法线维度上进行传递。本文方法的核心就是一个融合deactivableskipconnection的模块，该方法通过相同的端到端架构集成了自动编码和图像到法线转换的功能。<span id="more"></span></p><h2 id="贡献">贡献</h2><ul><li>一种可以利用跨模态学习从单张人脸图像估计法线的框架；</li><li>可停用的跳跃连接架构模式（deactivable skip connection）</li><li>SOTA效果</li></ul><h2 id="方法">方法</h2><p><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143501613.png" alt="image-20220708143501613" style="zoom:50%;"></p><p>该架构允许利用成对或非成对的图像/法线数据进行图像到法线的转换（<span class="math inline">\(I\)</span>-&gt;<span class="math inline">\(\hat{N}\)</span>），在训练期间通过图像到图像（<span class="math inline">\(I\)</span>-&gt;<span class="math inline">\(\hat{I}\)</span>）和法线到法线（<span class="math inline">\(N\)</span>-&gt;<span class="math inline">\(\hat{N}\)</span>）的转换过程进行正则化。<span class="math inline">\(E_I\)</span>到<span class="math inline">\(D_N\)</span>的跳跃连接可以传递面部细节信息。</p><h3 id="deactivable-skip-connection">deactivable skip connection：</h3><figure><img src="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/image-20220707185938605.png" alt="image-20220707185938605"><figcaption aria-hidden="true">image-20220707185938605</figcaption></figure><p>在特征图从encoder到decoder传递过程中，这个skipconnection可以选择开启或关闭。</p><p>在进行 normal-&gt;normal (<span class="math inline">\(E_N\)</span>-&gt;<span class="math inline">\(D_N\)</span>) 传递过程中，<span class="math inline">\(D_N\)</span>的每一层输出<span class="math inline">\(F_{D}^{n-i}=f(F_{D}^{n-i-1})\)</span></p><p>在进行 image-&gt;normal（<span class="math inline">\(E_I\)</span>-&gt;<span class="math inline">\(D_N\)</span>）传递过程中，<span class="math inline">\(D_N\)</span>的每一层输出<span class="math inline">\(F_{D}^{n-i}\)</span>是由 前一层输出的<span class="math inline">\(f(F_{D}^{n-i-1})\)</span>上和<span class="math inline">\(F_E^i\)</span>同样通道数量的特征图，与<span class="math inline">\(F_E^i\)</span>特征图进行element-wisemax操作，得到新的特征图后和剩余通道数量的<span class="math inline">\(f(F_{D}^{n-i-1})\)</span>特征图进行相加得到。</p><p>这样做允许在不发生传输操作时将信息从编码器传输到解码器，而不会降低性能，就像自编码器正常工作时一样。</p><h3 id="loss-function">loss function：</h3><p><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143717592.png" alt="image-20220708143717592" style="zoom: 80%;"></p><p>训练过程只能对一个模态进行输入，要么是法线图要么是原图。</p><ul><li>当有原图输入，同时也有图片和法线图的ground truth时，先进行normal tonormal，再进行 image to normal，最后进行image toimage。上述的两个loss值进行同样比重求和得到最终loss。</li><li>当只有images或者只有normals时，就只进行image to image或者normal tonormal的传输过程。</li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> Face Reconstruction </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Face Reconstruction </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network</title>
       <link href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/"/>
       <url>/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/</url>
@@ -109,6 +84,31 @@
       <url>/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--To%20Fit%20or%20Not%20to%20Fit%20Model-based%20Face%20Reconstruction%20and%20Occlusion%20Segmentation%20from%20Weak%20Supervision/</url>
       
         <content type="html"><![CDATA[<h2 id="摘要"><strong>摘要</strong></h2><p>​由于遮挡物的剧烈的可变性，遮挡下的人脸重建极具挑战性。目前最成功的方法是通过逆向渲染来拟合3D人脸模型，并假设遮挡物给定分割，以此避免拟合遮挡物。然而，训练一个遮挡分割模型需要大量的注释数据。在这项工作中，我们介绍了一种基于模型的3D人脸重建方法，该方法对遮挡具有高度鲁棒性，但不需要任何遮挡注释进行训练。在我们的方法中，我们利用了生成人脸模型只能合成人脸而不是遮挡物的事实。我们使用此属性来指导遮挡分割网络的决策过程并完成无监督训练。目<strong>前主要挑战是模型拟合和遮挡分割相互依赖，需要共同推理。</strong>CelebA-HQ、AR数据库和 Now Challenge的定性和定量实验表明，所提出的方法在遮挡下实现了最先进的 3D 人脸重建。此外，尽管在没有任何遮挡注释的情况下进行了训练，但分割网络仍能准确定位遮挡。</p><span id="more"></span><h2 id="介绍"><strong>介绍</strong></h2><p>​单目3D人脸重建旨在估计人脸的姿态、形状和反照率，以及场景的光照条件和相机参数。从单个图像中解决所有这些因素是一个不适定问题。面部自动编码器面临的一个主要挑战是在野外环境下模型的性能仍然受到诸如遮挡，极端照明和姿势等因素限制。遮挡导致的一个核心问题是人脸模型会拟合被遮挡的人脸区域，导致重建的人脸失真。因此，一个遮挡的鲁棒的3D人脸重建问题就是去决定一张图像中哪些像素是需要去拟合，哪些像素是不需要去拟合的。</p><p>​在本文的工作中，设计了一种基于模型的人脸重建方法，该方法具有高度的遮挡鲁棒性，不需要任何的人工遮挡注释。特别地，本文提出以一种合作的方式去训练一个面部自编码器和一个分割网络。分割网络决定人脸模型是否需要拟合某一像素的问题，以便人脸重建不受遮挡影响。分割网络采用无监督的方式去训练分割网络，利用了生成的人脸模型只能合成人脸而不能合成遮挡的事实。同时可以利用目标原始图像和渲染生成图像之间的差异作为监督信号来指导分割网络的训练。反过来，人脸重建网络通过使用来自分割网络的预测在拟合期间掩盖被遮挡的像素，从而对遮挡具有鲁棒性。这也导致了协同效应，遮挡分割引导面部自编码器拟合易于分类为面部区域的图像区域，改进的人脸拟合反过来又使得分割网络能够改进其预测。</p><p>​训练过程遵循EM算法的核心思想，通过在给定当前分割掩码估计的情况下训练面部自编码器和随后基于当前3D面部重建训练分割网络之间交替进行。分割网络的无监督训练是通过在估计的遮挡掩码下正则化和保留目标图像和重建图像之间的相似性来实现的，通过引入了几个损失来实现这一点。设计的模型在三份数据集进行验证，分别是<strong>CelebA-HQ,AR, NoW challenge</strong>。</p><p>​ 总之，我们在本文中做出了以下贡献：</p><ol type="1"><li>实现一种基于模型的 3D人脸重建方法，该方法具有高度鲁棒的遮挡，无需任何人工遮挡注释。</li><li>设计的模型在遮挡下的 3D人脸重建中实现了SOTA，并在野外图像上提供了面部遮挡掩码的准确估计。</li></ol><h2 id="方法"><strong>方法</strong></h2><p>​本文的目标是由严重遮挡的单一图片重建出鲁棒的3D人脸。为解决该问题，本文将基于模型的人脸自动编码器𝑅 与分割网络 𝑆集成在一起，并在它们之间产生协同作用。分割掩码在模型拟合期间消除遮挡的估计，使重建网络对遮挡具有鲁棒性。重建的结果给分割网络提供了参考，促使分割网络的准确性提升。</p><figure><img src="https://gitee.com/Forever_XS/markdown_paper_picture/raw/master/blog_casia/image-20220509144350144.png" alt="image-20220509144350144"><figcaption aria-hidden="true">image-20220509144350144</figcaption></figure><p>​</p><h5 id="training-the-segmentation-network">Training the segmentationnetwork</h5><p>​在训练分割网络时，人脸自编码器的参数是固定的，只优化分割网络。我们没有寻找标记数据，而是提出了四种损失来增强图像之间的内在相似性。每个损失都可以包括指示面部或相反的像素。损失在感知级别或像素级别上起作用，以充分利用视觉线索。分割网络训练时的四种损失如下：</p><figure><img src="https://gitee.com/Forever_XS/markdown_paper_picture/raw/master/blog_casia/image-20220509151017598.png" alt="image-20220509151017598"><figcaption aria-hidden="true">image-20220509151017598</figcaption></figure><p>​ 除了上述四种损失外，还添加正则化项损失<span class="math inline">\(L_{bin}=-\sum_x(M(x)-0.5)^2\)</span>来鼓励面部掩码是二值化分布（0或1）。总体损失函数式如下，其中<span class="math inline">\(\eta_1=15\quad\eta_2=3\quad\eta_3=0.5\quad\eta_4=2.5\quad\eta_5=10\)</span><span class="math display">\[L_S=\eta_1L_{neighbor}+\eta_2L_{dist}+\eta_3L_{area}+\eta_4L_{presv}+\eta_5L_{bin}\]</span></p><h5 id="training-the-face-autoencoder">Training the faceautoencoder</h5><p>​ 训练面部自编码器网络时，冻结分割网络参数。训练损失函数如下：</p><p><img src="https://gitee.com/Forever_XS/markdown_paper_picture/raw/master/blog_casia/image-20220509155639300.png" alt="image-20220509155639300" style="zoom: 67%;"></p><h5 id="unsupervised-initialization">Unsupervised Initialization</h5><p>​ 使用遮挡的鲁棒损失生成初级掩码：</p><figure><img src="https://gitee.com/Forever_XS/markdown_paper_picture/raw/master/blog_casia/image-20220509160342837.png" alt="image-20220509160342837"><figcaption aria-hidden="true">image-20220509160342837</figcaption></figure><h2 id="网络">网络</h2><p>​ encoder采用ResNet50，segmentation network采用UNet。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Face Reconstruction </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Face Reconstruction </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections</title>
+      <link href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/"/>
+      <url>/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/</url>
+      
+        <content type="html"><![CDATA[<h2 id="摘要">摘要</h2><p>当下单目重建多采用数据驱动的策略，但是受限于真实标签数据的缺乏，导致这种方法很困难。本文提出一种跨模态网络架构，可以利用所有图像和法线数据（无论是否配对），通过encoder和decoder的跳跃连接实现面部细节在图像和法线维度上进行传递。本文方法的核心就是一个融合deactivableskipconnection的模块，该方法通过相同的端到端架构集成了自动编码和图像到法线转换的功能。<span id="more"></span></p><h2 id="贡献">贡献</h2><ul><li>一种可以利用跨模态学习从单张人脸图像估计法线的框架；</li><li>可停用的跳跃连接架构模式（deactivable skip connection）</li><li>SOTA效果</li></ul><h2 id="方法">方法</h2><p><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143501613.png" alt="image-20220708143501613" style="zoom:50%;"></p><p>该架构允许利用成对或非成对的图像/法线数据进行图像到法线的转换（<span class="math inline">\(I\)</span>-&gt;<span class="math inline">\(\hat{N}\)</span>），在训练期间通过图像到图像（<span class="math inline">\(I\)</span>-&gt;<span class="math inline">\(\hat{I}\)</span>）和法线到法线（<span class="math inline">\(N\)</span>-&gt;<span class="math inline">\(\hat{N}\)</span>）的转换过程进行正则化。<span class="math inline">\(E_I\)</span>到<span class="math inline">\(D_N\)</span>的跳跃连接可以传递面部细节信息。</p><h3 id="deactivable-skip-connection">deactivable skip connection：</h3><figure><img src="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/image-20220707185938605.png" alt="image-20220707185938605"><figcaption aria-hidden="true">image-20220707185938605</figcaption></figure><p>在特征图从encoder到decoder传递过程中，这个skipconnection可以选择开启或关闭。</p><p>在进行 normal-&gt;normal (<span class="math inline">\(E_N\)</span>-&gt;<span class="math inline">\(D_N\)</span>) 传递过程中，<span class="math inline">\(D_N\)</span>的每一层输出<span class="math inline">\(F_{D}^{n-i}=f(F_{D}^{n-i-1})\)</span></p><p>在进行 image-&gt;normal（<span class="math inline">\(E_I\)</span>-&gt;<span class="math inline">\(D_N\)</span>）传递过程中，<span class="math inline">\(D_N\)</span>的每一层输出<span class="math inline">\(F_{D}^{n-i}\)</span>是由 前一层输出的<span class="math inline">\(f(F_{D}^{n-i-1})\)</span>上和<span class="math inline">\(F_E^i\)</span>同样通道数量的特征图，与<span class="math inline">\(F_E^i\)</span>特征图进行element-wisemax操作，得到新的特征图后和剩余通道数量的<span class="math inline">\(f(F_{D}^{n-i-1})\)</span>特征图进行相加得到。</p><p>这样做允许在不发生传输操作时将信息从编码器传输到解码器，而不会降低性能，就像自编码器正常工作时一样。</p><h3 id="loss-function">loss function：</h3><p><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143717592.png" alt="image-20220708143717592" style="zoom: 80%;"></p><p>训练过程只能对一个模态进行输入，要么是法线图要么是原图。</p><ul><li>当有原图输入，同时也有图片和法线图的ground truth时，先进行normal tonormal，再进行 image to normal，最后进行image toimage。上述的两个loss值进行同样比重求和得到最终loss。</li><li>当只有images或者只有normals时，就只进行image to image或者normal tonormal的传输过程。</li></ul>]]></content>
       
       
       <categories>
