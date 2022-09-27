@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>PyTorch随机种子的设置</title>
+      <link href="/2022/09/27/PyTorch/"/>
+      <url>/2022/09/27/PyTorch/</url>
+      
+        <content type="html"><![CDATA[<h2 id="随机数">随机数</h2><p>随机数是专门的随机实验结果，其特点在于产生的后面那个数与前一个数是没有联系的。真正的随机数是利用物理现象产生的，比如掷钱币、骰子、转轮等，产生随机数的方法统称为随机数发生器。</p><h2 id="伪随机数">伪随机数</h2><p>伪随机数其实是具有一定的规律性的，它是由计算机使用算法模拟出来的，但由于其产生的算法相对来说较为复杂，规律周期较长，并不容易查找出其规律。</p><span id="more"></span><h2 id="随机种子">随机种子</h2><p>随机种子是相对于随机方法而言，随机方法常见的有生成随机数，随机排序等。在深度学习中，常用的随机方法有网络的随机初始化，训练集的随机打乱。在深度学习中的随机种子是属于伪随机数，由随机数算法生成一种<strong>均匀分布且难以预测的序列</strong>。</p><h2 id="设置随机种子意义及弊端">设置随机种子意义及弊端</h2><p><strong>意义：</strong>在其他超参和网络等各项参数不变的情况下，在PyTorch中预先设置好随机种子后，可以保证<strong>多次运行此段代码能够得到完全一样的结果</strong>，此举保证了结果的<strong>可复现性</strong>。</p><p><strong>弊端：</strong>确定性操作通常比非确定性操作慢，因此模型的单次运行性能可能会降低。但是，确定随机种子可以通过促进试验、调试和回归测试来节省开发时间。</p><h2 id="设置随机种子方法">设置随机种子方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">setup_seed</span>(<span class="params">seed</span>): <span class="comment"># 1314 3407</span></span><br><span class="line">    random.seed(seed)</span><br><span class="line">    np.random.seed(seed)</span><br><span class="line">    torch.manual_seed(seed)</span><br><span class="line">    torch.cuda.manual_seed_all(seed)</span><br><span class="line">    torch.backends.cudnn.deterministic = <span class="literal">True</span></span><br></pre></td></tr></table></figure><h2 id="参考资料">参考资料</h2><p><a href="https://blog.csdn.net/xu624735206/article/details/124999824">pytorch设置随机种子</a></p><p><a href="https://blog.csdn.net/qq_24224067/article/details/106451064?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-106451064-blog-124999824.t0_edu_mlt&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-106451064-blog-124999824.t0_edu_mlt&amp;utm_relevant_index=1">Python随机种子介绍，PyTorch 中随机种子的设置与应用</a></p><p><a href="https://zhuanlan.zhihu.com/p/92622101?utm_medium=social&amp;utm_oi=947120030148726784&amp;utm_psn=1558129920798064640&amp;utm_source=wechat_session">深度学习--随机种子</a></p><p><a href="https://pytorch.org/docs/stable/notes/randomness.html">PyTorchReproducibility</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> PyTorch Summary </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PyTorch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>综述笔记--Review Face Reconstruction</title>
       <link href="/2022/09/24/ReviewFaceRecon/"/>
       <url>/2022/09/24/ReviewFaceRecon/</url>
