@@ -4,9 +4,38 @@
   
     
     <entry>
+      <title>论文笔记--Weakly-Supervised Multi-Face 3D Reconstruction</title>
+      <link href="/2022/09/28/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Weakly-Supervised%20Multi-Face%203D%20Reconstruction/"/>
+      <url>/2022/09/28/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Weakly-Supervised%20Multi-Face%203D%20Reconstruction/</url>
+      
+        <content type="html"><![CDATA[<h2 id="摘要">摘要</h2><p>三维人脸重建在媒体应用领域扮演着重要的角色，其中包括数字娱乐，社交媒体，情感分析和人物辨识。利用单张图片估计人脸参数模型，首先需要检测面部区域和面部关键点坐标，然后裁剪出每个人脸区域，利用深度学习方法对该区域图片进行参数回归预测。</p><p>不同于常规方法（对每个检测人脸区域独立的预测），本文提出一种端到端的多个面部三维重建方法（Multi-FaceReconstruction），可以利用单个网络推理预测出多个人脸实例参数。与此同时，本文为每个图像中的人脸使用了全局相机模型，使得重建出来的头部位置和面部朝向都与原图相同。</p><p>本文提出的方法不仅可以减少特征提取过程中的计算冗余，而且网络模型也更加容易部署。<span id="more"></span></p><h2 id="基本介绍">基本介绍</h2><p>常规的方法都是将人脸校正到特定的帧图片上，首先利用检测器定位面部区域和面部坐标，然后对面部进行裁剪后输入到神经网络，整个的过程包含了面部检测和面部参数回归估计两项任务。</p><h2 id="局限性">局限性</h2><p>相比于前几年单目图片重建方法，很少有工作专注于单目重建多个面部。其次，进行多面部重建的方法，只重建了面部形状，而忽视了面部纹理，光照信息；而且这些方法大多是以监督学习的方式进行训练，需要大量的几何细节ground-truth。由于训练样本要么是通过渲染合成的，要么是从传统的基于优化的方法中获得的，因此它们通常对姿势和光照的变化不太鲁棒。</p><p>本文提出的方法是一张图片里多个人脸共享相同的相机参数，这意味着相机焦距和相机中心坐标在3D参数模型上是一致的。而常规的方法是一个人脸对应一个相机模型参数，忽视了在3D视角下每个个体的头部位置和朝向这些高阶语义信息。</p><h2 id="创新点">创新点</h2><ol type="1"><li>提出一个弱监督多面部重建网络框架，仅用一次前向传播就可以预测出多个人脸实例的拟合3DMM模型参数</li><li>提出能够在3D场景中恢复相对头部位置和面部朝向的全局相机模型</li><li>阶段是训练方法，优化整体网络架构</li></ol><h2 id="方法">方法</h2><h3 id="计算耗时比较">计算耗时比较</h3><figure><img src="/2022/09/28/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Weakly-Supervised%20Multi-Face%203D%20Reconstruction/convention_method.png#pic_center" alt="常规方法"><figcaption aria-hidden="true">常规方法</figcaption></figure><figure><img src="/2022/09/28/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Weakly-Supervised%20Multi-Face%203D%20Reconstruction/proposed_method.png" alt="本文方法"><figcaption aria-hidden="true">本文方法</figcaption></figure><p><span class="math display">\[常规方法耗时：T_c = T_{Encoder} +n·(T_{Rectify}+T_{Encoder&#39;}+T_{Decoder})\]</span><span class="math display">\[本文方法耗时：T_p = T_{Encoder} + n·T_{Decoder} \]</span></p><h3 id="网络结构">网络结构</h3><figure><img src="/2022/09/28/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Weakly-Supervised%20Multi-Face%203D%20Reconstruction/encoder_decoder.png" alt="编码器解码器"><figcaption aria-hidden="true">编码器解码器</figcaption></figure><p><span class="math display">\[\delta=(\delta_m,\delta_{id},\delta_{exp},\delta_{alb},\delta_{pose},\delta_{illum})\]</span><span class="math display">\[\delta_{m}\in{\mathbb{R}^{1}}, \delta_{id}\in{\mathbb{R}^{80}},\delta_{exp}\in{\mathbb{R}^{64}}, \delta_{alb}\in{\mathbb{R}^{80}},\delta_{illum}\in{\mathbb{R}^{27}}\]</span></p><p>Encoder输出258个参数<span class="math inline">\(\delta\)</span>，包含有身份<span class="math inline">\(\delta_{id}\)</span>，表情<span class="math inline">\(\delta_{exp}\)</span>，反照率<span class="math inline">\(\delta_{alb}\)</span>，姿态<span class="math inline">\(\delta_{pose}\)</span>，光照<span class="math inline">\(\delta_{illum}\)</span>，图片每个人脸位置<span class="math inline">\(\delta_m\)</span></p><h3 id="dmm">3DMM</h3><p>3DMM作为Decoder，参数化方法合成人脸，人脸的形状，纹理表示如下：</p><p>备注：3表示x, y, z三个坐标值；N表示顶点数</p><p><span class="math display">\[ S = \bar{S} +\delta_{id}*S_{id}+\delta_{exp}*S_{exp}\]</span><span class="math display">\[A = \bar{A} + \delta_{alb}*A_{alb}\]</span><span class="math display">\[S\in{\mathbb{R}^{3 \times N}}, A\in{\mathbb{R}^{3 \times N},N=35709}\]</span></p><h3 id="相机模型">相机模型</h3><p>透视投影矩阵: <span class="math inline">\(f_g是焦距，w和h是图像的宽和高\)</span> <span class="math display">\[K = \begin{bmatrix}    f_g &amp; 0 &amp; w/2 \\    0 &amp; f_g &amp; h/2 \\    0 &amp; 0 &amp; 1\end{bmatrix}\]</span></p><p>旋转矩阵：<span class="math inline">\(R\in{\mathbb{R}^{3 \times3}}\)</span>，由<span class="math inline">\(\delta_{rot}\in{SO(3)}\)</span>计算得到。<span class="math inline">\(\delta_{rot}\)</span>包含三个参数，分别是沿着x轴，y轴，z轴旋转角度</p><p>平移矩阵：<span class="math inline">\(t=\begin{bmatrix}t_x &amp; t_y&amp;t_z\end{bmatrix}^T\)</span>；平移矩阵内部参数的计算取决于预测的平移向量<span class="math inline">\(\delta_{trans}=\begin{bmatrix}d_x &amp; d_y &amp;d_z\end{bmatrix}^T\)</span>决定。(备注：<span class="math inline">\(c_x,c_y\)</span>是每个人脸在图像平面的中心位置)<span class="math display">\[\begin{bmatrix}    t_x \\    t_y  \\    t_z\end{bmatrix} =\begin{bmatrix}    d_z(d_x+c_x-w/2)/f_g \\    d_z(d_y+c_y-h/2)/f_g \\    d_z\end{bmatrix}\]</span></p><p>姿态系数：前文提到的姿态系数<span class="math inline">\(\delta_{pose}=(\delta_{rot},\delta_{trans})\)</span></p><p>图像空间坐标表示：<span class="math inline">\(p\propto{K(RX+t)},p=(u,v,1)^T\)</span></p><h3 id="损失函数">损失函数</h3><p>整体损失函数有5项函数构成，分别叫center loss，pixel-wiseloss，perception-level loss，sparse landmark reprojectionloss，regularization loss。其中后面三项的函数设计的思路或者内容与<a href="https://starrylight.top/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Accurate%203D%20Face%20Reconstruction%20with%20Weakly-Supervised%20LearningFrom%20Single%20Image%20to%20Image%20Set/#more">CVPRWorkshop2019论文</a>的损失函数一致</p><p>后续补充损失函数笔记~~~</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Face Reconstruction </category>
+          
+          <category> Paper Notes </category>
+          
+          <category> arXiv </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Face Reconstruction </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>PyTorch随机种子的设置</title>
-      <link href="/2022/09/27/PyTorch/"/>
-      <url>/2022/09/27/PyTorch/</url>
+      <link href="/2022/09/27/PyTorch--Random%20Seed/"/>
+      <url>/2022/09/27/PyTorch--Random%20Seed/</url>
       
         <content type="html"><![CDATA[<h2 id="随机数">随机数</h2><p>随机数是专门的随机实验结果，其特点在于产生的后面那个数与前一个数是没有联系的。真正的随机数是利用物理现象产生的，比如掷钱币、骰子、转轮等，产生随机数的方法统称为随机数发生器。</p><h2 id="伪随机数">伪随机数</h2><p>伪随机数其实是具有一定的规律性的，它是由计算机使用算法模拟出来的，但由于其产生的算法相对来说较为复杂，规律周期较长，并不容易查找出其规律。</p><span id="more"></span><h2 id="随机种子">随机种子</h2><p>随机种子是相对于随机方法而言，随机方法常见的有生成随机数，随机排序等。在深度学习中，常用的随机方法有网络的随机初始化，训练集的随机打乱。在深度学习中的随机种子是属于伪随机数，由随机数算法生成一种<strong>均匀分布且难以预测的序列</strong>。</p><h2 id="设置随机种子意义及弊端">设置随机种子意义及弊端</h2><p><strong>意义：</strong>在其他超参和网络等各项参数不变的情况下，在PyTorch中预先设置好随机种子后，可以保证<strong>多次运行此段代码能够得到完全一样的结果</strong>，此举保证了结果的<strong>可复现性</strong>。</p><p><strong>弊端：</strong>确定性操作通常比非确定性操作慢，因此模型的单次运行性能可能会降低。但是，确定随机种子可以通过促进试验、调试和回归测试来节省开发时间。</p><h2 id="设置随机种子方法">设置随机种子方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">setup_seed</span>(<span class="params">seed</span>): <span class="comment"># 1314 3407</span></span><br><span class="line">    random.seed(seed)</span><br><span class="line">    np.random.seed(seed)</span><br><span class="line">    torch.manual_seed(seed)</span><br><span class="line">    torch.cuda.manual_seed_all(seed)</span><br><span class="line">    torch.backends.cudnn.deterministic = <span class="literal">True</span></span><br></pre></td></tr></table></figure><h2 id="参考资料">参考资料</h2><p><a href="https://blog.csdn.net/xu624735206/article/details/124999824">pytorch设置随机种子</a></p><p><a href="https://blog.csdn.net/qq_24224067/article/details/106451064?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-106451064-blog-124999824.t0_edu_mlt&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-106451064-blog-124999824.t0_edu_mlt&amp;utm_relevant_index=1">Python随机种子介绍，PyTorch 中随机种子的设置与应用</a></p><p><a href="https://zhuanlan.zhihu.com/p/92622101?utm_medium=social&amp;utm_oi=947120030148726784&amp;utm_psn=1558129920798064640&amp;utm_source=wechat_session">深度学习--随机种子</a></p><p><a href="https://pytorch.org/docs/stable/notes/randomness.html">PyTorchReproducibility</a></p>]]></content>
       
@@ -67,6 +96,8 @@
           
           <category> Face Reconstruction </category>
           
+          <category> Paper Notes </category>
+          
           <category> CVPR </category>
           
       </categories>
@@ -93,6 +124,8 @@
       <categories>
           
           <category> Face Reconstruction </category>
+          
+          <category> Paper Notes </category>
           
           <category> CVPR </category>
           
@@ -121,6 +154,8 @@
           
           <category> Face Reconstruction </category>
           
+          <category> Paper Notes </category>
+          
           <category> arXiv </category>
           
       </categories>
@@ -147,6 +182,8 @@
       <categories>
           
           <category> Face Reconstruction </category>
+          
+          <category> Paper Notes </category>
           
           <category> CVPR </category>
           
