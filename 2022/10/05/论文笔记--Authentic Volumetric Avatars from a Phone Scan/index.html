@@ -19,28 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"the-fleetinglove.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"changyan","storage":true,"lazyload":false,"nav":null,"activeClass":"changyan"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="简介 传统3D人脸重建方法，大多是立足于图像信息，如基于图像亮度、边缘信息、线性透视、颜色、相对高度、视差等等一种或多种信息建模技术进行3D人脸重建。这方面的技术论文，无论国内外都相当多，也较杂乱，一时间个人也不好具体统计，总之其中也是有很多不错的思想和方法的，当然这也不是本文重点内容。 基于模型的3D人脸重建方法，是目前较为流行的3D人脸重建方法；3D模型主要用三角网格或点云来表示，现下流行">
+    <meta name="description" content="** 目录 ** - 摘要 - 基本介绍 - 局限性 - 创新点 - 方法 摘要 基本介绍 局限性 创新点 方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="综述笔记--Review Face Reconstruction">
-<meta property="og:url" content="http://the-fleetinglove.github.io/2022/09/24/ReviewFaceRecon/index.html">
+<meta property="og:title" content="Authentic Volumetric Avatars from a Phone Scan">
+<meta property="og:url" content="http://the-fleetinglove.github.io/2022/10/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Authentic%20Volumetric%20Avatars%20from%20a%20Phone%20Scan/index.html">
 <meta property="og:site_name" content="Starry Light">
-<meta property="og:description" content="简介 传统3D人脸重建方法，大多是立足于图像信息，如基于图像亮度、边缘信息、线性透视、颜色、相对高度、视差等等一种或多种信息建模技术进行3D人脸重建。这方面的技术论文，无论国内外都相当多，也较杂乱，一时间个人也不好具体统计，总之其中也是有很多不错的思想和方法的，当然这也不是本文重点内容。 基于模型的3D人脸重建方法，是目前较为流行的3D人脸重建方法；3D模型主要用三角网格或点云来表示，现下流行">
+<meta property="og:description" content="** 目录 ** - 摘要 - 基本介绍 - 局限性 - 创新点 - 方法 摘要 基本介绍 局限性 创新点 方法">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-09-24T06:05:05.000Z">
-<meta property="article:modified_time" content="2022-09-26T10:08:46.991Z">
+<meta property="article:published_time" content="2022-10-05T09:16:39.000Z">
+<meta property="article:modified_time" content="2022-10-05T09:23:34.035Z">
 <meta property="article:author" content="ZJU_XS">
-<meta property="article:tag" content="Paper Review">
+<meta property="article:tag" content="Face Reconstruction">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://the-fleetinglove.github.io/2022/09/24/ReviewFaceRecon/">
+<link rel="canonical" href="http://the-fleetinglove.github.io/2022/10/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Authentic%20Volumetric%20Avatars%20from%20a%20Phone%20Scan/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://the-fleetinglove.github.io/2022/09/24/ReviewFaceRecon/","path":"2022/09/24/ReviewFaceRecon/","title":"综述笔记--Review Face Reconstruction"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://the-fleetinglove.github.io/2022/10/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Authentic%20Volumetric%20Avatars%20from%20a%20Phone%20Scan/","path":"2022/10/05/论文笔记--Authentic Volumetric Avatars from a Phone Scan/","title":"Authentic Volumetric Avatars from a Phone Scan"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>综述笔记--Review Face Reconstruction | Starry Light</title>
+<title>Authentic Volumetric Avatars from a Phone Scan | Starry Light</title>
   
 
 
@@ -144,8 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#d%E5%8F%AF%E5%BD%A2%E5%8F%98%E6%A8%A1%E5%9E%8B3d-morphable-model"><span class="nav-number">2.</span> <span class="nav-text">3D可形变模型(3D Morphable
-Model)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD"><span class="nav-number">3.</span> <span class="nav-text">未完待续</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text">局限性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E6%96%B0%E7%82%B9"><span class="nav-number">4.</span> <span class="nav-text">创新点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">方法</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -160,13 +159,13 @@ Model)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href=
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -221,7 +220,7 @@ Model)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href=
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://the-fleetinglove.github.io/2022/09/24/ReviewFaceRecon/">
+    <link itemprop="mainEntityOfPage" href="http://the-fleetinglove.github.io/2022/10/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Authentic%20Volumetric%20Avatars%20from%20a%20Phone%20Scan/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_0045.JPG">
@@ -234,12 +233,12 @@ Model)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href=
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="综述笔记--Review Face Reconstruction | Starry Light">
+      <meta itemprop="name" content="Authentic Volumetric Avatars from a Phone Scan | Starry Light">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          综述笔记--Review Face Reconstruction
+          Authentic Volumetric Avatars from a Phone Scan
         </h1>
 
         <div class="post-meta-container">
@@ -249,15 +248,9 @@ Model)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href=
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2022-09-24 14:05:05" itemprop="dateCreated datePublished" datetime="2022-09-24T14:05:05+08:00">2022-09-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-09-26 18:08:46" itemprop="dateModified" datetime="2022-09-26T18:08:46+08:00">2022-09-26</time>
+      <time title="创建时间：2022-10-05 17:16:39 / 修改时间：17:23:34" itemprop="dateCreated datePublished" datetime="2022-10-05T17:16:39+08:00">2022-10-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -269,7 +262,11 @@ Model)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href=
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Face-Reconstruction/Review/" itemprop="url" rel="index"><span itemprop="name">Review</span></a>
+          <a href="/categories/Face-Reconstruction/Paper-Notes/" itemprop="url" rel="index"><span itemprop="name">Paper Notes</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Face-Reconstruction/Paper-Notes/TOG/" itemprop="url" rel="index"><span itemprop="name">TOG</span></a>
         </span>
     </span>
 
@@ -289,8 +286,8 @@ Model)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href=
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="综述笔记--Review Face Reconstruction" href="/2022/09/24/ReviewFaceRecon/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::fee2793e00f1378a5a1df52aac4ccdff" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="Authentic Volumetric Avatars from a Phone Scan" href="/2022/10/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Authentic%20Volumetric%20Avatars%20from%20a%20Phone%20Scan/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::2b9424d639958b9488c39278d02d4b26" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -301,7 +298,7 @@ Model)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href=
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>578</span>
+      <span>39</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -321,17 +318,12 @@ Model)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href=
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="简介">简介</h2>
-<p>传统3D人脸重建方法，大多是立足于图像信息，如基于图像亮度、边缘信息、线性透视、颜色、相对高度、视差等等一种或多种信息建模技术进行3D人脸重建。这方面的技术论文，无论国内外都相当多，也较杂乱，一时间个人也不好具体统计，总之其中也是有很多不错的思想和方法的，当然这也不是本文重点内容。
-基于模型的3D人脸重建方法，是目前较为流行的3D人脸重建方法；3D模型主要用三角网格或点云来表示，现下流行的模型有通用人脸模型(CANDIDE-3)和三维变形模型(3DMM)及其变种模型，基于它们的3D人脸重建算法既有传统算法也有深度学习算法。
-端到端3D人脸重建方法，是近年新起的方法；它们绕开了人脸模型，设计自己的3D人脸表示方法，采用CNN结构进行直接回归，端到端地重建3D人脸。
-<span id="more"></span></p>
-<h2 id="d可形变模型3d-morphable-model">3D可形变模型(3D Morphable
-Model)</h2>
-<p>可形变模型（Morphable
-Model）这一名词来源于计算机图形学中一个名叫Morphing技术的图像生成算法。Morphing技术主要思想：如果两幅图像中存在一定的对应关系，那么就可以利用这个对应关系生成具一副有平滑过渡效果的图像。
-3DMM，即三维可变形人脸模型，是一个通用的三维人脸模型，用固定的点数来表示人脸。它的核心思想就是人脸可以在三维空间中进行一一匹配，并且可以由其他许多幅人脸正交基加权线性相加而来。（线性模型）</p>
-<h2 id="未完待续">未完待续</h2>
+        <p>** 目录 ** - <a href="#摘要">摘要</a> - <a href="#基本介绍">基本介绍</a> - <a href="#局限性">局限性</a> - <a href="#创新点">创新点</a> - <a href="#方法">方法</a></p>
+<h2 id="摘要">摘要</h2>
+<h2 id="基本介绍">基本介绍</h2>
+<h2 id="局限性">局限性</h2>
+<h2 id="创新点">创新点</h2>
+<h2 id="方法">方法</h2>
 
     </div>
 
@@ -349,7 +341,7 @@ Model）这一名词来源于计算机图形学中一个名叫Morphing技术的�
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://the-fleetinglove.github.io/2022/09/24/ReviewFaceRecon/" title="综述笔记--Review Face Reconstruction">http://the-fleetinglove.github.io/2022/09/24/ReviewFaceRecon/</a>
+      <a href="http://the-fleetinglove.github.io/2022/10/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Authentic%20Volumetric%20Avatars%20from%20a%20Phone%20Scan/" title="Authentic Volumetric Avatars from a Phone Scan">http://the-fleetinglove.github.io/2022/10/05/论文笔记--Authentic Volumetric Avatars from a Phone Scan/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -358,21 +350,18 @@ Model）这一名词来源于计算机图形学中一个名叫Morphing技术的�
 </div>
 
           <div class="post-tags">
-              <a href="/tags/Paper-Review/" rel="tag"><i class="fa fa-tag"></i> Paper Review</a>
+              <a href="/tags/Face-Reconstruction/" rel="tag"><i class="fa fa-tag"></i> Face Reconstruction</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/" rel="prev" title="论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections">
-                  <i class="fa fa-chevron-left"></i> 论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections
+                <a href="/2022/09/30/%E8%AE%BA%E6%96%87%E5%90%88%E9%9B%86--Awesome%203D%20Human%20Reconstruction/" rel="prev" title="3D Human Reconstruction Paper List">
+                  <i class="fa fa-chevron-left"></i> 3D Human Reconstruction Paper List
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/09/27/PyTorch--Random%20Seed/" rel="next" title="PyTorch随机种子的设置">
-                  PyTorch随机种子的设置 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -384,7 +373,7 @@ Model）这一名词来源于计算机图形学中一个名叫Morphing技术的�
 
 
 
-    <div class="comments" id="SOHUCS" sid="fee2793e00f1378a5a1df52aac4ccdff"></div>
+    <div class="comments" id="SOHUCS" sid="2b9424d639958b9488c39278d02d4b26"></div>
 </div>
   </main>
 

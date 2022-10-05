@@ -19,32 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"the-fleetinglove.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"changyan","storage":true,"lazyload":false,"nav":null,"activeClass":"changyan"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="摘要 当下单目重建多采用数据驱动的策略，但是受限于真实标签数据的缺乏，导致这种方法很困难。本文提出一种跨模态网络架构，可以利用所有图像和法线数据（无论是否配对），通过encoder和decoder的跳跃连接实现面部细节在图像和法线维度上进行传递。本文方法的核心就是一个融合deactivable skip connection的模块，该方法通过相同的端到端架构集成了自动编码和图像到法线转换的功">
+    <meta name="description" content="简介 传统3D人脸重建方法，大多是立足于图像信息，如基于图像亮度、边缘信息、线性透视、颜色、相对高度、视差等等一种或多种信息建模技术进行3D人脸重建。这方面的技术论文，无论国内外都相当多，也较杂乱，一时间个人也不好具体统计，总之其中也是有很多不错的思想和方法的，当然这也不是本文重点内容。 基于模型的3D人脸重建方法，是目前较为流行的3D人脸重建方法；3D模型主要用三角网格或点云来表示，现下流行">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections">
-<meta property="og:url" content="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/index.html">
+<meta property="og:title" content="综述笔记--Review Face Reconstruction">
+<meta property="og:url" content="http://the-fleetinglove.github.io/2022/09/24/%E7%BB%BC%E8%BF%B0%E7%AC%94%E8%AE%B0--Review%20Face%20Reconstruction/index.html">
 <meta property="og:site_name" content="Starry Light">
-<meta property="og:description" content="摘要 当下单目重建多采用数据驱动的策略，但是受限于真实标签数据的缺乏，导致这种方法很困难。本文提出一种跨模态网络架构，可以利用所有图像和法线数据（无论是否配对），通过encoder和decoder的跳跃连接实现面部细节在图像和法线维度上进行传递。本文方法的核心就是一个融合deactivable skip connection的模块，该方法通过相同的端到端架构集成了自动编码和图像到法线转换的功">
+<meta property="og:description" content="简介 传统3D人脸重建方法，大多是立足于图像信息，如基于图像亮度、边缘信息、线性透视、颜色、相对高度、视差等等一种或多种信息建模技术进行3D人脸重建。这方面的技术论文，无论国内外都相当多，也较杂乱，一时间个人也不好具体统计，总之其中也是有很多不错的思想和方法的，当然这也不是本文重点内容。 基于模型的3D人脸重建方法，是目前较为流行的3D人脸重建方法；3D模型主要用三角网格或点云来表示，现下流行">
 <meta property="og:locale">
-<meta property="og:image" content="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143501613.png">
-<meta property="og:image" content="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/image-20220707185938605.png">
-<meta property="og:image" content="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143717592.png">
-<meta property="article:published_time" content="2022-09-23T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-09-28T02:50:59.382Z">
+<meta property="article:published_time" content="2022-09-24T06:05:05.000Z">
+<meta property="article:modified_time" content="2022-10-05T09:19:19.574Z">
 <meta property="article:author" content="ZJU_XS">
-<meta property="article:tag" content="Face Reconstruction">
+<meta property="article:tag" content="Paper Review">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143501613.png">
 
 
-<link rel="canonical" href="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/">
+<link rel="canonical" href="http://the-fleetinglove.github.io/2022/09/24/%E7%BB%BC%E8%BF%B0%E7%AC%94%E8%AE%B0--Review%20Face%20Reconstruction/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/","path":"2022/09/24/论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections/","title":"论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://the-fleetinglove.github.io/2022/09/24/%E7%BB%BC%E8%BF%B0%E7%AC%94%E8%AE%B0--Review%20Face%20Reconstruction/","path":"2022/09/24/综述笔记--Review Face Reconstruction/","title":"综述笔记--Review Face Reconstruction"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections | Starry Light</title>
+<title>综述笔记--Review Face Reconstruction | Starry Light</title>
   
 
 
@@ -148,7 +144,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%A1%E7%8C%AE"><span class="nav-number">2.</span> <span class="nav-text">贡献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#deactivable-skip-connection"><span class="nav-number">3.1.</span> <span class="nav-text">deactivable skip connection：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loss-function"><span class="nav-number">3.2.</span> <span class="nav-text">loss function：</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#d%E5%8F%AF%E5%BD%A2%E5%8F%98%E6%A8%A1%E5%9E%8B3d-morphable-model"><span class="nav-number">2.</span> <span class="nav-text">3D可形变模型(3D Morphable
+Model)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD"><span class="nav-number">3.</span> <span class="nav-text">未完待续</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -224,7 +221,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/">
+    <link itemprop="mainEntityOfPage" href="http://the-fleetinglove.github.io/2022/09/24/%E7%BB%BC%E8%BF%B0%E7%AC%94%E8%AE%B0--Review%20Face%20Reconstruction/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_0045.JPG">
@@ -237,12 +234,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections | Starry Light">
+      <meta itemprop="name" content="综述笔记--Review Face Reconstruction | Starry Light">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections
+          综述笔记--Review Face Reconstruction
         </h1>
 
         <div class="post-meta-container">
@@ -253,14 +250,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-09-24 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-24T00:00:00+08:00">2022-09-24</time>
+      <time title="创建时间：2022-09-24 14:05:05" itemprop="dateCreated datePublished" datetime="2022-09-24T14:05:05+08:00">2022-09-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-09-28 10:50:59" itemprop="dateModified" datetime="2022-09-28T10:50:59+08:00">2022-09-28</time>
+      <time title="修改时间：2022-10-05 17:19:19" itemprop="dateModified" datetime="2022-10-05T17:19:19+08:00">2022-10-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -272,11 +269,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Face-Reconstruction/Paper-Notes/" itemprop="url" rel="index"><span itemprop="name">Paper Notes</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Face-Reconstruction/Paper-Notes/CVPR/" itemprop="url" rel="index"><span itemprop="name">CVPR</span></a>
+          <a href="/categories/Face-Reconstruction/Review/" itemprop="url" rel="index"><span itemprop="name">Review</span></a>
         </span>
     </span>
 
@@ -296,8 +289,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections" href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::1b266ab9cc74efce5c0b108c9ca66477" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="综述笔记--Review Face Reconstruction" href="/2022/09/24/%E7%BB%BC%E8%BF%B0%E7%AC%94%E8%AE%B0--Review%20Face%20Reconstruction/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::44ce2708e663788d6b80162bafc7456a" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -308,14 +301,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.1k</span>
+      <span>578</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>1 分钟</span>
     </span>
 </div>
 
@@ -328,41 +321,17 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="摘要">摘要</h2>
-<p>当下单目重建多采用数据驱动的策略，但是受限于真实标签数据的缺乏，导致这种方法很困难。本文提出一种跨模态网络架构，可以利用所有图像和法线数据（无论是否配对），通过encoder和decoder的跳跃连接实现面部细节在图像和法线维度上进行传递。本文方法的核心就是一个融合deactivable
-skip
-connection的模块，该方法通过相同的端到端架构集成了自动编码和图像到法线转换的功能。
+        <h2 id="简介">简介</h2>
+<p>传统3D人脸重建方法，大多是立足于图像信息，如基于图像亮度、边缘信息、线性透视、颜色、相对高度、视差等等一种或多种信息建模技术进行3D人脸重建。这方面的技术论文，无论国内外都相当多，也较杂乱，一时间个人也不好具体统计，总之其中也是有很多不错的思想和方法的，当然这也不是本文重点内容。
+基于模型的3D人脸重建方法，是目前较为流行的3D人脸重建方法；3D模型主要用三角网格或点云来表示，现下流行的模型有通用人脸模型(CANDIDE-3)和三维变形模型(3DMM)及其变种模型，基于它们的3D人脸重建算法既有传统算法也有深度学习算法。
+端到端3D人脸重建方法，是近年新起的方法；它们绕开了人脸模型，设计自己的3D人脸表示方法，采用CNN结构进行直接回归，端到端地重建3D人脸。
 <span id="more"></span></p>
-<h2 id="贡献">贡献</h2>
-<ul>
-<li>一种可以利用跨模态学习从单张人脸图像估计法线的框架；</li>
-<li>可停用的跳跃连接架构模式（deactivable skip connection）</li>
-<li>SOTA效果</li>
-</ul>
-<h2 id="方法">方法</h2>
-<p><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143501613.png" alt="image-20220708143501613" style="zoom:50%;"></p>
-<p>该架构允许利用成对或非成对的图像/法线数据进行图像到法线的转换（<span class="math inline">\(I\)</span>-&gt;<span class="math inline">\(\hat{N}\)</span>），在训练期间通过图像到图像（<span class="math inline">\(I\)</span>-&gt;<span class="math inline">\(\hat{I}\)</span>）和法线到法线（<span class="math inline">\(N\)</span>-&gt;<span class="math inline">\(\hat{N}\)</span>）的转换过程进行正则化。<span class="math inline">\(E_I\)</span>到<span class="math inline">\(D_N\)</span>的跳跃连接可以传递面部细节信息。</p>
-<h3 id="deactivable-skip-connection">deactivable skip connection：</h3>
-<figure>
-<img src="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/image-20220707185938605.png" alt="image-20220707185938605">
-<figcaption aria-hidden="true">image-20220707185938605</figcaption>
-</figure>
-<p>在特征图从encoder到decoder传递过程中，这个skip
-connection可以选择开启或关闭。</p>
-<p>在进行 normal-&gt;normal (<span class="math inline">\(E_N\)</span>-&gt;<span class="math inline">\(D_N\)</span>) 传递过程中，<span class="math inline">\(D_N\)</span>的每一层输出<span class="math inline">\(F_{D}^{n-i}=f(F_{D}^{n-i-1})\)</span></p>
-<p>在进行 image-&gt;normal（<span class="math inline">\(E_I\)</span>-&gt;<span class="math inline">\(D_N\)</span>）传递过程中，<span class="math inline">\(D_N\)</span>的每一层输出<span class="math inline">\(F_{D}^{n-i}\)</span>是由 前一层输出的<span class="math inline">\(f(F_{D}^{n-i-1})\)</span>上和<span class="math inline">\(F_E^i\)</span>同样通道数量的特征图，与<span class="math inline">\(F_E^i\)</span>特征图进行element-wise
-max操作，得到新的特征图后和剩余通道数量的<span class="math inline">\(f(F_{D}^{n-i-1})\)</span>特征图进行相加得到。</p>
-<p>这样做允许在不发生传输操作时将信息从编码器传输到解码器，而不会降低性能，就像自编码器正常工作时一样。</p>
-<h3 id="loss-function">loss function：</h3>
-<p><img src="https://gitee.com/Forever_XS/cloud_img/raw/master/blog/image-20220708143717592.png" alt="image-20220708143717592" style="zoom: 80%;"></p>
-<p>训练过程只能对一个模态进行输入，要么是法线图要么是原图。</p>
-<ul>
-<li>当有原图输入，同时也有图片和法线图的ground truth时，先进行normal to
-normal，再进行 image to normal，最后进行image to
-image。上述的两个loss值进行同样比重求和得到最终loss。</li>
-<li>当只有images或者只有normals时，就只进行image to image或者normal to
-normal的传输过程。</li>
-</ul>
+<h2 id="d可形变模型3d-morphable-model">3D可形变模型(3D Morphable
+Model)</h2>
+<p>可形变模型（Morphable
+Model）这一名词来源于计算机图形学中一个名叫Morphing技术的图像生成算法。Morphing技术主要思想：如果两幅图像中存在一定的对应关系，那么就可以利用这个对应关系生成具一副有平滑过渡效果的图像。
+3DMM，即三维可变形人脸模型，是一个通用的三维人脸模型，用固定的点数来表示人脸。它的核心思想就是人脸可以在三维空间中进行一一匹配，并且可以由其他许多幅人脸正交基加权线性相加而来。（线性模型）</p>
+<h2 id="未完待续">未完待续</h2>
 
     </div>
 
@@ -380,7 +349,7 @@ normal的传输过程。</li>
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://the-fleetinglove.github.io/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/" title="论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections">http://the-fleetinglove.github.io/2022/09/24/论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections/</a>
+      <a href="http://the-fleetinglove.github.io/2022/09/24/%E7%BB%BC%E8%BF%B0%E7%AC%94%E8%AE%B0--Review%20Face%20Reconstruction/" title="综述笔记--Review Face Reconstruction">http://the-fleetinglove.github.io/2022/09/24/综述笔记--Review Face Reconstruction/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -389,20 +358,20 @@ normal的传输过程。</li>
 </div>
 
           <div class="post-tags">
-              <a href="/tags/Face-Reconstruction/" rel="tag"><i class="fa fa-tag"></i> Face Reconstruction</a>
+              <a href="/tags/Paper-Review/" rel="tag"><i class="fa fa-tag"></i> Paper Review</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Regressing%20Robust%20and%20Discriminative%203D%20Morphable%20Models%20with%20a%20very%20Deep%20Neural%20Network/" rel="prev" title="论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network">
-                  <i class="fa fa-chevron-left"></i> 论文笔记--Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network
+                <a href="/2022/09/24/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Cross-modal%20Deep%20Face%20Normals%20with%20Deactivable%20Skip%20Connections/" rel="prev" title="论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections">
+                  <i class="fa fa-chevron-left"></i> 论文笔记--Cross-modal Deep Face Normals with Deactivable Skip Connections
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/09/24/%E7%BB%BC%E8%BF%B0%E7%AC%94%E8%AE%B0--Review%20Face%20Reconstruction/" rel="next" title="综述笔记--Review Face Reconstruction">
-                  综述笔记--Review Face Reconstruction <i class="fa fa-chevron-right"></i>
+                <a href="/2022/09/27/PyTorch--Random%20Seed/" rel="next" title="PyTorch随机种子的设置">
+                  PyTorch随机种子的设置 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -415,7 +384,7 @@ normal的传输过程。</li>
 
 
 
-    <div class="comments" id="SOHUCS" sid="1b266ab9cc74efce5c0b108c9ca66477"></div>
+    <div class="comments" id="SOHUCS" sid="44ce2708e663788d6b80162bafc7456a"></div>
 </div>
   </main>
 
