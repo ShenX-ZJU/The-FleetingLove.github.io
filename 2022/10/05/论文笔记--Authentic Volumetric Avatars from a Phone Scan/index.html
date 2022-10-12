@@ -19,18 +19,21 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"the-fleetinglove.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"changyan","storage":true,"lazyload":false,"nav":null,"activeClass":"changyan"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="** 目录 ** - 摘要 - 基本介绍 - 局限性 - 创新点 - 方法 摘要 基本介绍 局限性 创新点 方法">
+    <meta name="description" content="目录  摘要 介绍 创新点 方法  Method Overview Universal Prior Model Dataset Training and Losses Conditioning Data Acquisition Personalized Decoder Generation Finetuning a Personalized Decoder  局">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Authentic Volumetric Avatars from a Phone Scan">
 <meta property="og:url" content="http://the-fleetinglove.github.io/2022/10/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Authentic%20Volumetric%20Avatars%20from%20a%20Phone%20Scan/index.html">
 <meta property="og:site_name" content="Starry Light">
-<meta property="og:description" content="** 目录 ** - 摘要 - 基本介绍 - 局限性 - 创新点 - 方法 摘要 基本介绍 局限性 创新点 方法">
+<meta property="og:description" content="目录  摘要 介绍 创新点 方法  Method Overview Universal Prior Model Dataset Training and Losses Conditioning Data Acquisition Personalized Decoder Generation Finetuning a Personalized Decoder  局">
 <meta property="og:locale">
+<meta property="og:image" content="http://the-fleetinglove.github.io/2022/10/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Authentic%20Volumetric%20Avatars%20from%20a%20Phone%20Scan/Method%20Overview.png">
+<meta property="og:image" content="http://the-fleetinglove.github.io/2022/10/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Authentic%20Volumetric%20Avatars%20from%20a%20Phone%20Scan/Universal%20Prior%20Model%20Architecture.png">
 <meta property="article:published_time" content="2022-10-05T09:16:39.000Z">
-<meta property="article:modified_time" content="2022-10-05T09:23:34.035Z">
+<meta property="article:modified_time" content="2022-10-12T18:03:52.386Z">
 <meta property="article:author" content="ZJU_XS">
 <meta property="article:tag" content="Face Reconstruction">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://the-fleetinglove.github.io/2022/10/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Authentic%20Volumetric%20Avatars%20from%20a%20Phone%20Scan/Method%20Overview.png">
 
 
 <link rel="canonical" href="http://the-fleetinglove.github.io/2022/10/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Authentic%20Volumetric%20Avatars%20from%20a%20Phone%20Scan/">
@@ -144,7 +147,10 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text">局限性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E6%96%B0%E7%82%B9"><span class="nav-number">4.</span> <span class="nav-text">创新点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">方法</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E6%96%B0%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">创新点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#method-overview"><span class="nav-number">4.1.</span> <span class="nav-text">Method Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#universal-prior-model"><span class="nav-number">4.2.</span> <span class="nav-text">Universal Prior Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dataset"><span class="nav-number">4.3.</span> <span class="nav-text">Dataset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#training-and-losses"><span class="nav-number">4.4.</span> <span class="nav-text">Training and Losses</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conditioning-data-acquisition"><span class="nav-number">4.5.</span> <span class="nav-text">Conditioning Data
+Acquisition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#personalized-decoder-generation"><span class="nav-number">4.6.</span> <span class="nav-text">Personalized Decoder
+Generation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#finetuning-a-personalized-decoder"><span class="nav-number">4.7.</span> <span class="nav-text">Finetuning a Personalized
+Decoder</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-number">5.</span> <span class="nav-text">局限性</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -248,9 +254,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-10-05 17:16:39 / 修改时间：17:23:34" itemprop="dateCreated datePublished" datetime="2022-10-05T17:16:39+08:00">2022-10-05</time>
+      <time title="创建时间：2022-10-05 17:16:39" itemprop="dateCreated datePublished" datetime="2022-10-05T17:16:39+08:00">2022-10-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-10-13 02:03:52" itemprop="dateModified" datetime="2022-10-13T02:03:52+08:00">2022-10-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -298,14 +310,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>39</span>
+      <span>4.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>8 分钟</span>
     </span>
 </div>
 
@@ -318,12 +330,156 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>** 目录 ** - <a href="#摘要">摘要</a> - <a href="#基本介绍">基本介绍</a> - <a href="#局限性">局限性</a> - <a href="#创新点">创新点</a> - <a href="#方法">方法</a></p>
+        <p><strong>目录</strong></p>
+<ul>
+<li><a href="#摘要">摘要</a></li>
+<li><a href="#介绍">介绍</a></li>
+<li><a href="#创新点">创新点</a></li>
+<li><a href="#方法">方法</a>
+<ul>
+<li><a href="#method-overview">Method Overview</a></li>
+<li><a href="#universal-prior-model">Universal Prior Model</a></li>
+<li><a href="#dataset">Dataset</a></li>
+<li><a href="#training-and-losses">Training and Losses</a></li>
+<li><a href="#conditioning-data-acquisition">Conditioning Data
+Acquisition</a></li>
+<li><a href="#personalized-decoder-generation">Personalized Decoder
+Generation</a></li>
+<li><a href="#finetuning-a-personalized-decoder">Finetuning a
+Personalized Decoder</a></li>
+</ul></li>
+<li><a href="#局限性">局限性</a></li>
+</ul>
 <h2 id="摘要">摘要</h2>
-<h2 id="基本介绍">基本介绍</h2>
-<h2 id="局限性">局限性</h2>
+<p>创造出一个逼真级的人脸头像需要大量的面部捕捉数据，但是这种条件只有视觉特效企业才能做到，无法普及到大众群体。本文的工作就是利用手机捕捉数据来得到一个真实匹配人脸的头像。</p>
+<p>不同于以往直接对整个人脸外观进行建模的方法，本文的方法仅使用少量的数据就可以应对各种人脸生成一个头像模型。</p>
+<p>这个模型摒弃了会产生幻觉身份的低维潜在空间信息，相反，它使用了可以提取不同尺度person-specific信息的条件表示</p>
+<p>本文方法的输出不仅是一个与人的面部形状和外观相匹配的高保真3D头像，而且还可以使用一个具有对注视方向的分离控制的共享全局表情空间来驱动人脸。
+<span id="more"></span></p>
+<h2 id="介绍">介绍</h2>
+<p>人脸是身份认证的重要属性，人脸外表，结构和姿态的细微变化都会降低人脸头像的重建质量。过去的方法为了解决这一问题都需要大量的数据驱动和预处理操作，损耗的算力和时间都是巨大的。</p>
+<p>从有限的数据自动创建头像的核心挑战在于先验和验证之间的权衡。需要先验来补充有关人的外观，几何形状和运动的有限信息，这些信息可以以轻量级的方式获得。然而，尽管近年来取得了重大进展，但以高分辨率学习人脸的多种情况仍然具有挑战性。对分布的长尾进行建模，这对于捕获特定雀斑，纹身或疤痕等个人特质是必要的，可能需要具有更高维潜在空间的模型，因此，比目前用于训练此类模型的数据要多得多。</p>
+<p>我们以前的架构是基于这样的观察，即面部外观和结构的长尾方面在于细节，最好直接从一个人的条件数据中提取，而不是从低维的身份嵌入中重建。早期方法从低维身份embeddings重建方法很快会陷入停滞，难以捕获到person-specific信息。我们的模型是一种超网络，它将用户中性面孔的数据作为输入，并以偏差图的形式为个性化解码器生成参数。</p>
+<p>在这项工作中，我们通过消除对不存在的人产生幻觉的能力来打破先验和验证之间的权衡，相反，我们使用易于获得的真实人物的手机数据来适应。本文的方法分为3个要素：</p>
+<ol type="1">
+<li>在多视角观测下上百个人的视频数据里训练得到的普适性先验模型</li>
+<li>a registration technique for conditioning the model on a phone scan
+of the user’s neutral expression</li>
+<li>一种<strong>逆向渲染</strong>方式去微调额外情感数据上的个性化人脸模型</li>
+</ol>
 <h2 id="创新点">创新点</h2>
+<p><strong>Key Words</strong>: hypernetwork, inverse rendering</p>
+<p>本文主要贡献如下：</p>
+<ol type="1">
+<li>一种用于产生逼真头像的系统，与以往方法相比，质量有大幅提高</li>
+<li>一种新颖网络架构，网络模型鲁棒性很高。产生的头像拥有一致的对视角点，表情和注视方向分离控制的表情空间</li>
+<li>逆向渲染策略，在给定的额外手机正面拍摄数据下，将头像的表情空间特征化于用户，同时保证视角点的泛化性和潜在空间的语义</li>
+</ol>
 <h2 id="方法">方法</h2>
+<h3 id="method-overview">Method Overview</h3>
+<p><img src="/2022/10/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Authentic%20Volumetric%20Avatars%20from%20a%20Phone%20Scan/Method%20Overview.png"></p>
+<h3 id="universal-prior-model">Universal Prior Model</h3>
+<p><img src="/2022/10/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0--Authentic%20Volumetric%20Avatars%20from%20a%20Phone%20Scan/Universal%20Prior%20Model%20Architecture.png"></p>
+<p><span class="math display">\[
+e =
+\mathcal{E}_{exp}(\vartriangle{T_{exp}},\vartriangle{G_{exp}};\Phi_{exp})
+\]</span><span class="math display">\[
+\Theta_{id} = \mathcal{E}_{id}(T_{neu},G_{neu};\Phi_{id})
+\]</span><span class="math display">\[
+\mathcal{M} = \mathcal{D}(e,v,g;\Theta_{id},\Phi_{dec})
+\]</span><span class="math display">\[
+\vartriangle{T_{exp}} = T_{exp} - T_{neu}
+\]</span><span class="math display">\[
+\vartriangle{G_{exp}} = G_{exp} - G_{neu}
+\]</span></p>
+<p><span class="math inline">\(e\)</span>表示情感系数expression
+code；<span class="math inline">\(\Theta_{id}\)</span>表示bias
+maps；<span class="math inline">\(\mathcal{M}\)</span>表示volumetric
+primitives slabs，用于后续Ray March操作；<span class="math inline">\(\Phi_{exp}
+、\Phi_{id}、\Phi_{dec}\)</span>是可训练的参数，我认为是网络权重。</p>
+<h3 id="dataset">Dataset</h3>
+<p>跟踪网格(tracked meshes)的生成分为三个步骤：Capture Dome, Capture
+Script, Tracking Pipeline。</p>
+<p><strong>Capture Dome：</strong>
+为了捕获面部表演的同步多视图视频，本文构建了一个多摄像机捕获系统。摄像机系统含有几十个彩色和单色摄像机，摄像机以4096*2668的分辨率拍摄，快门速度为2.222ms，每秒90帧。350个点光源均匀分布在整个结构中，以均匀地照亮参与者。</p>
+<p><strong>Capture Script：</strong>
+捕获脚本的目标是在最短的时间内系统地引导参与者完成各种面部表情。参与者被要求完成以下练习：模仿65个不同的面部运动片段；执行自由形式的面部运动范围部分；向25个不同的方向看以表示不同的凝视角度；阅读50个语音平衡的句子。总共有255名参与者使用此捕获脚本的数据采集，并且每个参与者平均记录了12k个子采样帧，总共有310万帧图片。</p>
+<p><strong>Tracking Pipeline：</strong> 为了有效地生成超过 310
+万帧的跟踪网格，我们实施了高度可扩展的两相方法。我们的方法可以独立处理每个帧，从而完全并行处理。在第一阶段，我们训练一个高覆盖率的地标探测器，产生一组320个地标，这些地标均匀分布在脸上，覆盖突出特征（如眼角）以及更均匀的区域（如脸颊和前额）。</p>
+<h3 id="training-and-losses">Training and Losses</h3>
+<p>通用先验模型参数为<span class="math inline">\(\Phi=[\Phi_{exp},\Phi_{id},\Phi_{dec}]\)</span>。优化的算法如下：</p>
+<p><span class="math display">\[
+\Phi^{*} = argmin \sum_{i\in{\mathcal{N}_{\mathcal{I}}}}
+\sum_{f\in{\mathcal{F}_{\mathcal{i}}}}
+\sum_{c\in{\mathcal{N}_{\mathcal{C}}}}
+\mathcal{L}_{total}(\Phi;\mathcal{I}_{f}^{i,c})
+\]</span></p>
+<p><span class="math display">\[ \mathcal{N}_{\mathcal{I}} : different{\
+}identities \]</span></p>
+<p><span class="math display">\[ \mathcal{N}_{\mathcal{F}_i} : frames
+\]</span></p>
+<p><span class="math display">\[ \mathcal{N}_{\mathcal{C}} : different{\
+}camera{\ }views \]</span></p>
+<p>整体损失函数算式如下： <span class="math display">\[
+\mathcal{L}_{total}(\Phi;\mathcal{I}_{f}^{i,c}) =
+\mathcal{L}_{rec}(\Phi;\mathcal{I}_{f}^{i,c}) +
+\mathcal{L}_{mvp}(\Phi;\mathcal{I}_{f}^{i,c}) + \mathcal{L}_{seg}(\Phi)
+\]</span></p>
+<p>重建损失函数算式如下： <span class="math display">\[
+\mathcal{L}_{rec}(\Phi;\mathcal{I}_p) =
+\mathcal{L}_{pho}(\Phi;\mathcal{I}_{f}^{i,c}) +
+\mathcal{L}_{vgg}(\Phi;\mathcal{I}_{f}^{i,c}) +
+\mathcal{L}_{gan}(\Phi;\mathcal{I}_{f}^{i,c})
+\]</span><span class="math display">\[
+\mathcal{L}_{pho}(\Phi;\mathcal{I}_p) = \lambda_{pho}
+\frac{1}{\mathcal{N}_{\mathcal{P}}} \sum_{p \in{\mathcal{P}}}
+||\mathcal{I}_{f}^{i,c}(p) - \tilde{\mathcal{I}}_{f}^{i,c}(p)||_1
+\]</span></p>
+<p>分割损失函数如下： <span class="math display">\[
+\mathcal{L}_{seg}(\Phi;\mathcal{I}_{p}) = \lambda_{seg}
+\frac{1}{\mathcal{N}_{\mathcal{P}}} \sum_{p \in{\mathcal{P}}}
+||\mathcal{O}_{f}^{i,c}(p) - \mathcal{S}_{f}^{i,c}(p)||_1
+\]</span></p>
+<h3 id="conditioning-data-acquisition">Conditioning Data
+Acquisition</h3>
+<p>要为用户重建逼真的头像，我们首先获取UPM所需的训练数据。对于捕获数据过程，要求用户在将手机从左到右，然后上下移动时保持固定的中性表情，以完全捕获整个头部，包括头发。</p>
+<p>获取数据流程如下： 1.
+利用iPhone12的深度相机对用户中性表情进行各角度拍摄； 2.
+每张照片都检测出人脸landmarks； 3.
+对照片进行分割，得到分割掩码和轮廓痕迹 4.
+使用PCA模型，优化PCA系数，头部旋转角度，平移等参数，得到mesh 5.
+mesh经过unwarp得到texture 6. 利用之前得到的mesh和texture，渲染得到3D
+Face</p>
+<h3 id="personalized-decoder-generation">Personalized Decoder
+Generation</h3>
+<p>Personalize Reconstruct流程：将获取到的mesh转化成geometry
+image，geometry image和neutral
+texture一并输入到UMP，最后渲染输出avatar。</p>
+<p>目前存在弊端就是输入数据存在domain
+gap，其一是训练UMP的数据及实在静态且亮度均匀的环境下采集的，而手机数据是在自然环境光下获取的，其二是由于物理限制，手机捕获数据仅覆盖头部的前半球面样貌。</p>
+<p>为了弥补这个差距，采用两步措施。一是手机面部数据的mesh拟合算法应用到实验室采集数据上，用离散个别相机照片等效于手持相机拍摄的效果；二是纹理归一化，选取误差最小的图片。</p>
+<h3 id="finetuning-a-personalized-decoder">Finetuning a Personalized
+Decoder</h3>
+<p><span class="math display">\[
+\mathcal{L}_{ref}(\Phi;\mathcal{I}_{f}) =
+\mathcal{L}_{rec}(\Phi;\mathcal{I}_{f}) +
+\mathcal{L}_{hole}(\Phi;\mathcal{I}_{f}) +
+\mathcal{L}_{seg}(\Phi;\mathcal{I}_{f})
+\]</span><span class="math display">\[
+\mathcal{L}_{hole}(\Phi;\mathcal{I}_{f}) =
+\lambda_{hole}||max(\mathcal{T}_{f} -
+\mathcal{O}_{f},0)·\mathcal{T}_{f}||_1
+\]</span></p>
+<p><span class="math inline">\(\mathcal{I}_{f}\)</span>: expression
+frames;   <span class="math inline">\(\mathcal{T}_{f}\)</span>: rendered
+mask;   <span class="math inline">\(\mathcal{O}_{f}\)</span>: the
+integrated opacity computed during ray marching</p>
+<h2 id="局限性">局限性</h2>
+<ol type="1">
+<li>需要大量时间处理数据，数据不合适会造成过拟合现象。</li>
+<li>用于构建UPM的数据与真实世界数据之间的域差距。</li>
+<li>无法重建出完整身体，发型上的重构仍有待改进，包含眼镜的人脸重建效果有待改进。</li>
+</ol>
 
     </div>
 
@@ -394,13 +550,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">44k</span>
+    <span title="站点总字数">48k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:13</span>
+    <span title="站点阅读时长">1:20</span>
   </span>
 </div>
 <div class="busuanzi-count">
